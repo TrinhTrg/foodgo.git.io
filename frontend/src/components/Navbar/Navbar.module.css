@@ -1,0 +1,911 @@
+/* Container chính của Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #FFF7ED;
+  /* Màu nền be */
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Link điều hướng */
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.navLinks a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Link được active (màu cam) */
+.navLinks a.active,
+.navLinks a:hover {
+  color: #F58634;
+}
+
+/* Khu vực nút hành động */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Nút chung */
+.iconButton,
+.iconButtonOrange {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Nút màu cam */
+.iconButtonOrange {
+  background-color: #F58634;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  /* Làm nó tròn */
+  border-radius: 50%;
+}
+
+.iconButtonActive {
+  border-color: #F58634;
+  color: #F58634;
+  background-color: rgba(245, 134, 52, 0.08);
+}
+
+.localeButton {
+  border-color: #F58634;
+  color: #F58634;
+  background-color: #fff;
+  white-space: nowrap;
+}
+
+/* Nhóm bên trái (Logo + Search) */
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  /* Khoảng cách giữa logo và thanh tìm kiếm */
+}
+
+
+/* Search Container */
+.searchBarContainer {
+  position: relative;
+}
+
+/* Thanh tìm kiếm */
+.searchBar {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  width: 300px;
+  border: 1px solid #e0e0e0;
+  /* Thêm viền mỏng */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  /* Thêm bóng mờ nhẹ */
+}
+
+.searchBar svg {
+  color: #777;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.searchBar input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.searchBar input::placeholder {
+  color: #777;
+}
+
+/* Search Suggestions Dropdown */
+.searchSuggestions {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  width: 100%;
+  min-width: 350px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10000;
+  /* Tăng lên để hiển thị trên popup restaurant */
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+}
+
+.suggestionSection {
+  padding: 0.5rem 0;
+}
+
+.suggestionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #666;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e0e0e0;
+  justify-content: space-between;
+}
+
+.clearHistoryButton {
+  background: none;
+  border: none;
+  color: var(--primary-color, #ff6b35);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.5rem;
+  margin-left: auto;
+  transition: opacity 0.2s;
+}
+
+.clearHistoryButton:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.suggestionIcon {
+  font-size: 1rem;
+  color: #777;
+}
+
+.suggestionItem {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestionItem:hover {
+  background-color: #f8f8f8;
+}
+
+.suggestionItem:last-child {
+  border-bottom: none;
+}
+
+.suggestionItemContent {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.suggestionImage {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.suggestionText {
+  flex: 1;
+  min-width: 0;
+}
+
+.suggestionTitle {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.suggestionSubtitle {
+  font-size: 0.85rem;
+  color: #777;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.noResults,
+.loadingText {
+  padding: 1rem;
+  text-align: center;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.loadingText {
+  color: var(--primary-color);
+}
+
+/* Dropdown Container */
+.dropdownContainer {
+  position: relative;
+}
+
+/* Dropdown Menu */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background-color: rgb(255, 255, 255);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 320px;
+  z-index: 10000;
+  /* Tăng lên để hiển thị trên popup restaurant */
+  overflow: hidden;
+}
+
+/* Dropdown Header */
+.dropdownHeader {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Dropdown Options Container */
+.dropdownOptions {
+  padding: 0.5rem 0;
+}
+
+/* Dropdown Option Item */
+.dropdownOption {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dropdownOption:hover {
+  background-color: #f8f8f8;
+}
+
+.dropdownOption:hover .optionTitle {
+  color: var(--primary-color);
+}
+
+.dropdownOption:hover .optionSubtext {
+  color: var(--primary-color);
+}
+
+.dropdownOption:hover .optionIcon {
+  color: var(--primary-color);
+}
+
+/* Option Icon */
+.optionIcon {
+  color: #777;
+  font-size: 1.25rem;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+/* Option Content */
+.optionContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Option Title */
+.optionTitle {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+/* Option Subtext */
+.optionSubtext {
+  font-size: 0.85rem;
+  color: #777;
+  line-height: 1.4;
+}
+
+/* User Menu Container */
+.userMenuContainer {
+  position: relative;
+}
+
+/* User Button */
+.userButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+}
+
+.userButton:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* User Menu Dropdown */
+.userMenu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 220px;
+  z-index: 10000;
+  /* Tăng lên để hiển thị trên popup restaurant */
+  overflow: hidden;
+}
+
+/* User Info Section */
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.userIcon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  background-color: #fff7ed;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+.userName {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.userEmail {
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 0.25rem;
+}
+
+/* User Menu Items */
+.userMenuItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.userMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  border: none;
+  background-color: transparent;
+  color: #333;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.userMenuItem:last-child {
+  border-bottom: none;
+}
+
+.userMenuItem:hover {
+  background-color: #f5f5f5;
+}
+
+.userMenuItem svg {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Logout Button */
+.logoutButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  border: none;
+  background-color: transparent;
+  color: #c33;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.logoutButton:hover {
+  background-color: #fee;
+}
+
+.locationError {
+  position: absolute;
+  top: 100%;
+  right: 2rem;
+  margin-top: 0.25rem;
+  color: #c2410c;
+  font-size: 0.8rem;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablet (1024px và nhỏ hơn) */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0.875rem 1.5rem;
+  }
+
+  .navLeft {
+    gap: 1.5rem;
+  }
+
+  .searchBar {
+    width: 250px;
+  }
+
+  .navLinks {
+    gap: 1.5rem;
+  }
+
+  .navLinks a {
+    font-size: 0.9rem;
+  }
+}
+
+/* Tablet nhỏ (768px và nhỏ hơn) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .navLeft {
+    gap: 1rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .searchBar {
+    width: 100%;
+    max-width: 300px;
+    min-width: 200px;
+  }
+
+  .searchBarContainer {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Ẩn nav links và actions trên mobile */
+  .navLinks {
+    display: none;
+  }
+
+  .actions {
+    display: none;
+  }
+
+  /* Hiển thị mobile menu button */
+  .mobileMenuButton {
+    display: flex !important;
+    order: 3; /* Đặt sau navLinks và trước actions */
+    margin-left: auto; /* Đẩy button về bên phải */
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .searchSuggestions {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .navLinks {
+    display: none; /* Ẩn nav links trên mobile, có thể thêm hamburger menu sau */
+  }
+
+  .actions {
+    gap: 0.5rem;
+  }
+
+  .iconButton {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .iconButtonOrange {
+    padding: 0.4rem;
+  }
+
+  .userButton {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .dropdownMenu {
+    min-width: 280px;
+    right: 0;
+  }
+
+  .userMenu {
+    min-width: 200px;
+    right: 0;
+  }
+}
+
+/* Mobile Menu Button */
+.mobileMenuButton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  color: #555;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  z-index: 10;
+  position: relative;
+}
+
+.mobileMenuButton:hover {
+  border-color: #F58634;
+  color: #F58634;
+  background-color: #fff8f1;
+}
+
+/* Search Icon Button (thay thế search bar trên mobile nhỏ) */
+.searchIconButton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  background-color: white;
+  color: #777;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.searchIconButton:hover {
+  border-color: #F58634;
+  color: #F58634;
+}
+
+/* Mobile Menu Overlay */
+.mobileMenuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Mobile Menu Drawer */
+.mobileMenuDrawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 85%;
+  max-width: 320px;
+  height: 100vh;
+  background: white;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.3s ease-out;
+  overflow-y: auto;
+}
+
+.mobileMenuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e0e0e0;
+  background: #FFF7ED;
+}
+
+.mobileMenuHeader h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.mobileMenuClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: #555;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.mobileMenuClose:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #F58634;
+}
+
+.mobileMenuContent {
+  flex: 1;
+  padding: 0.5rem 0;
+  overflow-y: auto;
+}
+
+.mobileMenuSection {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.mobileMenuSection:last-child {
+  border-bottom: none;
+}
+
+.mobileMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  border: none;
+  background: transparent;
+  color: #333;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.mobileMenuItem:hover {
+  background: #f8f8f8;
+  color: #F58634;
+}
+
+.mobileMenuItemActive {
+  background: rgba(245, 134, 52, 0.1);
+  color: #F58634;
+}
+
+.mobileMenuItemDanger {
+  color: #c33;
+}
+
+.mobileMenuItemDanger:hover {
+  background: #fee;
+  color: #c33;
+}
+
+.mobileMenuItem svg {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile (480px và nhỏ hơn) */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .logo img {
+    height: 35px;
+  }
+
+  .navLeft {
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Search bar chỉ hiển thị icon trên mobile nhỏ */
+  .searchBarContainer {
+    flex: 0 0 auto;
+    position: relative;
+  }
+
+  .searchBar {
+    display: none;
+  }
+
+  .searchIconButton {
+    display: flex;
+  }
+
+  /* Khi search expanded, hiển thị full search bar */
+  .searchBarContainer.searchExpanded {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: 0.5rem;
+    z-index: 1000;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .searchBarContainer.searchExpanded .searchBar {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+
+  .searchBarContainer.searchExpanded .searchIconButton {
+    display: none;
+  }
+
+  .searchBar {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .searchBar input {
+    font-size: 0.85rem;
+  }
+
+  .actions {
+    gap: 0.4rem;
+  }
+
+  .iconButton {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.8rem;
+    gap: 0.4rem;
+  }
+
+  .iconButtonOrange {
+    padding: 0.35rem;
+  }
+
+  .userButton {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .dropdownMenu {
+    min-width: 260px;
+  }
+
+  .userMenu {
+    min-width: 180px;
+  }
+
+  .suggestionItem {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .suggestionImage {
+    width: 35px;
+    height: 35px;
+  }
+
+  .suggestionTitle {
+    font-size: 0.9rem;
+  }
+
+  .suggestionSubtitle {
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra small mobile (360px và nhỏ hơn) */
+@media (max-width: 360px) {
+  .navbar {
+    padding: 0.5rem;
+  }
+
+  .logo img {
+    height: 30px;
+  }
+
+  .searchBar {
+    width: 100%;
+    max-width: 180px;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .iconButton {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .userButton {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
+  }
+}

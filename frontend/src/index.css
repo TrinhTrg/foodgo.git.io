@@ -1,0 +1,96 @@
+/* 1. Reset CSS cơ bản */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+}
+
+/* 2. Định nghĩa các biến màu (CSS Variables) toàn cục */
+:root {
+  /* Màu sắc từ UI FoodGo của bạn */
+  --primary-color: #F58634;    /* Màu cam chính */
+  --background-color: #FFF7ED; /* Màu be nhạt */
+  --text-color: #333;         /* Màu chữ chính */
+  --text-light: #555;        /* Màu chữ phụ */
+  
+  /* Font chữ - Bạn có thể đổi sau nếu import Google Fonts */
+  /* (Giữ nguyên font-family của Vite là tốt) */
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 3. Áp dụng style cho body */
+body {
+  /* Xóa hết 'display: flex', 'place-items: center' */
+  /* Chỉ giữ lại margin: 0 (đã có ở reset) và min-height */
+  min-height: 100vh;
+}
+
+/* 4. Style link chung (nếu muốn) */
+a {
+  font-weight: 500;
+  color: var(--text-light);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--primary-color);
+}
+
+/* 5. Điều chỉnh z-index của Leaflet controls để không ghi đè lên modal */
+.leaflet-control-zoom,
+.leaflet-control,
+.leaflet-top,
+.leaflet-bottom,
+.leaflet-left,
+.leaflet-right {
+  z-index: 400 !important;
+}
+
+/* Đảm bảo các popup và tooltip của Leaflet vẫn hoạt động bình thường */
+.leaflet-popup,
+.leaflet-tooltip {
+  z-index: 500 !important;
+}
+
+/* ========== GLOBAL RESPONSIVE FIXES ========== */
+
+/* A. Đảm bảo ảnh không bao giờ to hơn màn hình chứa nó */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* B. Ngăn thanh cuộn ngang khó chịu */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* C. Đảm bảo các container không có width cố định quá lớn */
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+/* Responsive font size mặc định */
+body {
+  font-size: 16px;
+}
+
+/* Tablet trở lên */
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+}

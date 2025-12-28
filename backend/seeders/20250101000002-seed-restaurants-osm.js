@@ -1,0 +1,3727 @@
+
+'use strict';
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up (queryInterface, Sequelize) {
+    const restaurantsData = [
+  {
+    "name": "Nhà hàng LoCo",
+    "category_id": 10,
+    "address": "1C Đường Lê Duẩn, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0713531,
+    "longitude": 108.2234585,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipP4y-zkmgp40UmCojMxcn8xrCFwymiOOyu5omaf=w408-h612-k-no",
+    "opening_hours": {
+      "schedule": "10:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "땀띤식당(Tâm Tình Restaurant)",
+    "category_id": 10,
+    "address": "77 Đường Trần Bạch Đằng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0509126,
+    "longitude": 108.247442,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 09:30-14:30 ; 16:30-22:00"
+    },
+    "website": "https://meatplusvn.com/meat-plus-da-nang/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Chill Chill Đảo Xanh",
+    "category_id": 10,
+    "address": "Lô 1 cầu Đảo Xanh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0486996,
+    "longitude": 108.2242954,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSx2l49xQcR-cDGg3EBUA3iDxd3_OJB1Ggju1Y0JlcjvWhkKTGYYoC0luvyvWdJprS8mLJDYP1h40RZvtghsFa3EhsIYwzVV3Izh_aNVydO-FrXIIUjhHZLAmQDbDezMooETsIvLL1c_Osw=w408-h272-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 16:00-00:00"
+    },
+    "website": "https://www.facebook.com/profile.php?id=61572638076291",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Hương Cau",
+    "category_id": 10,
+    "address": "244 Đường 2 Tháng 9, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0482352,
+    "longitude": 108.2231394,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-17:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Bún Ốc Liễu Châu - Bún Quế Lâm (螺蛳粉 - 桂林米粉) - restaurant",
+    "category_id": 10,
+    "address": "186 Trần Bạch Đằng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0532475,
+    "longitude": 108.2438548,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-02:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Bê Thui 100",
+    "category_id": 10,
+    "address": "100 Đường Điện Biên Phủ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0658884,
+    "longitude": 108.2002733,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-21:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Bê Thui",
+    "category_id": 10,
+    "address": "03 Đường Tuệ Tĩnh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0549844,
+    "longitude": 108.2200408,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Dê Nghĩa Restaurant",
+    "category_id": 10,
+    "address": "143-145 Đường Đỗ Bá, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0495557,
+    "longitude": 108.2343279,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-23:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Mi Quang 1A",
+    "category_id": 10,
+    "address": "5 Đường Hải Phòng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0725232,
+    "longitude": 108.2189341,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-21:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Red Sky Steakhouse Restaurant",
+    "category_id": 10,
+    "address": "248 Trần Phú, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0628344,
+    "longitude": 108.2232276,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 11:00-14:00; 17:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Nhà hàng HanCook",
+    "category_id": 10,
+    "address": "Ngô Quyền, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0716557,
+    "longitude": 108.2300722,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Bánh Xèo Bà Dưỡng",
+    "category_id": 10,
+    "address": "23 Kiệt 280 Hoàng Diệu, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0588034,
+    "longitude": 108.2160349,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 09:30-21:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "My Casa",
+    "category_id": 10,
+    "address": "53 Đường Morrison, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.07163,
+    "longitude": 108.2427238,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 11:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "CHOI’S - Korean Kitchen - restaurant",
+    "category_id": 10,
+    "address": "02 Đường Hoàng Hoa Thám, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0707738,
+    "longitude": 108.2093349,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-21:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Nhà hàng Phú Mỹ Thành",
+    "category_id": 10,
+    "address": "417 Nguyễn Tất Thành, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0763618,
+    "longitude": 108.2049,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-21:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Quán Phú Hồng",
+    "category_id": 10,
+    "address": "19 Yên Bái, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0695853,
+    "longitude": 108.2229138,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "10:30-14:00,16:00-21:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Quán An Bún Chả Cá",
+    "category_id": 10,
+    "address": "109 Nguyễn Chí Thanh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0745962,
+    "longitude": 108.2206238,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Quán Mì Quảng Ếch",
+    "category_id": 10,
+    "address": "441 Đường Ông Ích Khiêm, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0619829,
+    "longitude": 108.2163479,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:30-22:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "Đổi gió Restaurant",
+    "category_id": 10,
+    "address": "258 Nguyễn Văn Linh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0598008,
+    "longitude": 108.2093536,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.837Z",
+    "updatedAt": "2025-12-28T02:02:11.837Z"
+  },
+  {
+    "name": "L'italiano Restaurant",
+    "category_id": 10,
+    "address": "40 Đường An Thượng 30, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0511561,
+    "longitude": 108.2456807,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 11:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Nhà Hàng Đồ Ăn Thái - Thai Market Restaurant",
+    "category_id": 10,
+    "address": "4 Trần Quốc Toản, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0661423,
+    "longitude": 108.2242408,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-22:00"
+    },
+    "website": "https://thaimarket.vn/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Nhà Hàng Đồ Ăn Thái - Thai Market Restaurant",
+    "category_id": 10,
+    "address": "46 Thái Phiên, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0651331,
+    "longitude": 108.2225171,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-22:00"
+    },
+    "website": "https://thaimarket.vn/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Memory Lounge Restaurant",
+    "category_id": 10,
+    "address": "7 Bạch Đằng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0726661,
+    "longitude": 108.2251645,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 07:00-22:30"
+    },
+    "website": "https://www.facebook.com/memoryloungedanang/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "The Pizza Company Restaurant",
+    "category_id": 10,
+    "address": "Tầng trệt, Coopmart, 478 Điện Biên Phủ, Q. Thanh Khê, TP, Thanh Khê Đông, Thanh Khê, Đà Nẵng, Vietnam, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0667331,
+    "longitude": 108.1870304,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-22:00"
+    },
+    "website": "https://thepizzacompany.vn/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Nhà hàng Chay",
+    "category_id": 10,
+    "address": "87 Đường Hoàng Văn Thụ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0629555,
+    "longitude": 108.2195011,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-22:00"
+    },
+    "website": "http://revolutionofmushroom.com",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Chay 2 Restaurant",
+    "category_id": 10,
+    "address": "329 Dương Đình Nghệ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0707582,
+    "longitude": 108.2329541,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 07:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Nhà hàng chay Thực Dưỡng Bảo An (Bao An Macrobiotics)",
+    "category_id": 10,
+    "address": "56 Đường Hoàng Bích Sơn, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0753828,
+    "longitude": 108.2409602,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Sa 06:30-20:30; Su 06:30-15:30"
+    },
+    "website": "https://thucduongbaoan.com.vn/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Nhà Hàng Chay Hoa Sen - Vegetarian Restaurant",
+    "category_id": 10,
+    "address": "30/1 Đặng Thai Mai, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0609388,
+    "longitude": 108.2099353,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-20:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán ăn ngon Thìa Gỗ Đà Nẵng-style",
+    "category_id": 10,
+    "address": "37 Đường Ba Đình, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0760522,
+    "longitude": 108.2183879,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 11:00-20:30"
+    },
+    "website": "http://www.thiagodnstyle.com",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Bún Bò Bà Diệu",
+    "category_id": 10,
+    "address": "17 Trần Tống, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0585612,
+    "longitude": 108.210864,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 13:00+"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Markets Restaurant",
+    "category_id": 10,
+    "address": "29 Đường Lưu Quang Thuận, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0402369,
+    "longitude": 108.2456682,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Cơm Bà Thôi Restaurant",
+    "category_id": 10,
+    "address": "100 Đường Lê Đình Dương, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0613578,
+    "longitude": 108.2227325,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "24/7"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "NEM NƯỚNG THANH HÀ Restaurant",
+    "category_id": 10,
+    "address": "K96/146 Kiệt 96 Điện Biên Phủ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0675559,
+    "longitude": 108.1964679,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bikini Bottom Express Restaurant",
+    "category_id": 10,
+    "address": "45-47 Đường An Thượng 2, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0486661,
+    "longitude": 108.2475717,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "mo-su 08:00-22:45"
+    },
+    "website": "https://bikinibottomexpress.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Danang Tower Steakhouse Restaurant",
+    "category_id": 10,
+    "address": "341 Đường Trần Hưng Đạo, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0709643,
+    "longitude": 108.2292556,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 11:00-24:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "KURUMI - Restaurant",
+    "category_id": 10,
+    "address": "175 Đường Bà Huyện Thanh Quan, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0452794,
+    "longitude": 108.245744,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-22:00"
+    },
+    "website": "https://kurumi.vn/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Carol Lounge Restaurant",
+    "category_id": 10,
+    "address": "28d Đường Đống Đa, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0823478,
+    "longitude": 108.2203289,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 20:00-03:00"
+    },
+    "website": "https://carollounge.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Chinese Noodle Đệ Nhất Sủi Cảo Hoàn Mỹ - Restaurant",
+    "category_id": 10,
+    "address": "172 Đường Châu Thị Vĩnh Tế, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0484989,
+    "longitude": 108.2410216,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:30-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Làng Tôi - Bánh Khoái Cá Kình Huế Restaurant",
+    "category_id": 10,
+    "address": "85 Kiệt 227 Đường Nguyễn Văn Thoại, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0583075,
+    "longitude": 108.2443933,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Nu Đồ Restaurant",
+    "category_id": 10,
+    "address": "11/1 Đường Lưu Quang Thuận, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0409571,
+    "longitude": 108.2453688,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwnF0wpRmssPvC9IvTxT1If-1ORhvkYxvV-L99yOxTTaN05DEavUnQCG0MvQBbxeUvzYgbzJbH2EWB0X4MRtMX7OW9WujZShWt48h3-zh5OLoJCJbRKApV3dI8awnJ0wPDkdIae8GBHwpkx=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-16:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bếp Của Mạ - Cơm niêu và món Huế - Restaurant",
+    "category_id": 10,
+    "address": "346 2 Tháng 9, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0389193,
+    "longitude": 108.2234461,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-21:00"
+    },
+    "website": "fb.com/comnieuvamonhue",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "BaBaBa Japanese Restaurant",
+    "category_id": 10,
+    "address": "333 Đường Hồ Nghinh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0622398,
+    "longitude": 108.2436944,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-22:00"
+    },
+    "website": "https://www.bababajapan.com",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Olivia Pizza Restaurant",
+    "category_id": 10,
+    "address": "75 Đường Ngô Thì Sĩ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0477146,
+    "longitude": 108.2450807,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 17:00-01:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Mì Cay SEOUL Hải Châu Restaurant",
+    "category_id": 10,
+    "address": "Lô B6-B7, Đường 2/9, Bình Thuận, Hải Châu Đường 2 Tháng 9, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0543706,
+    "longitude": 108.2224112,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-22:00"
+    },
+    "website": "https://micayseoul.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "XÓM MỚI GARDEN ĐÀ NẴNG (씀모이가든 다낭)",
+    "category_id": 10,
+    "address": "222 Đường Trần Phú, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0635146,
+    "longitude": 108.2232424,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:30-22:00"
+    },
+    "website": "https://www.xommoigarden.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bikini Bottom Express Pink Church Restaurant",
+    "category_id": 10,
+    "address": "154 Đường Trần Phú, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0672416,
+    "longitude": 108.2236568,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-23:00"
+    },
+    "website": "https://www.bikinibottomexpress.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Roly Poly Fresh Spring Rolls & Coffee Đà Nẵng Restaurant",
+    "category_id": 10,
+    "address": "05 Đường An Thượng 6, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0487934,
+    "longitude": 108.2450404,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-20:00"
+    },
+    "website": "https://www.rolypolydanang.vn/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Riverside Terrace Restaurant",
+    "category_id": 10,
+    "address": "493 Đường Trần Hưng Đạo, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0631261,
+    "longitude": 108.2302807,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 11:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Le Comptoir Restaurant",
+    "category_id": 10,
+    "address": "16 Chế Lan Viên, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0426768,
+    "longitude": 108.245455,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 17:00-21:00"
+    },
+    "website": "https://lecomptoirdng.com/en/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bò Né 3 Ngon Restaurant",
+    "category_id": 10,
+    "address": "122 Đường Hồ Xuân Hương, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0401826,
+    "longitude": 108.247529,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-11:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Vietnom Local Eatery Restaurant",
+    "category_id": 10,
+    "address": "97 Mai Thúc Lân, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.047867,
+    "longitude": 108.2438751,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 07:30-22:00"
+    },
+    "website": "https://vietnom.kitchen/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Missteak Restaurant",
+    "category_id": 10,
+    "address": "99 Mai Thúc Lân, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0478267,
+    "longitude": 108.2438843,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 11:30-23:00"
+    },
+    "website": "https://missteak.co/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Rainbowl Poke Restaurant",
+    "category_id": 10,
+    "address": "95 Mai Thúc Lân, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0479151,
+    "longitude": 108.2438673,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "mo-su 07:30-22:00"
+    },
+    "website": "https://rainbowlpoke.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Phở Thìn Đà Nẵng",
+    "category_id": 10,
+    "address": "60 Đường Pasteur, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0698761,
+    "longitude": 108.2130745,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-14:00; 17:00-21:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Nhà hàng chay UM MANI",
+    "category_id": 10,
+    "address": "74 Đường Nguyễn Chí Thanh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0732641,
+    "longitude": 108.2207958,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:30-14:30, 16:00-21:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "PHỞ THÌN 13 LÒ ĐÚC",
+    "category_id": 10,
+    "address": "13 Đường Nguyễn Văn Thoại, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.054737,
+    "longitude": 108.2410262,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-22:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "กิน กิน Kin Kin Thai Food - Restaurant",
+    "category_id": 10,
+    "address": "59 Đường Bà Huyện Thanh Quan, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.043404,
+    "longitude": 108.24418,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 11:00-14:00, 16:30-21:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Butcher Steak - Restaurant",
+    "category_id": 10,
+    "address": "64 Lê Quang Đạo, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0508781,
+    "longitude": 108.2451984,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Westwood Da Nang - Restaurant",
+    "category_id": 10,
+    "address": "68 Nguyễn Tư Giản, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0474663,
+    "longitude": 108.2350925,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Tu-Su 18:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Cơm Gà Xối Mỡ Duyên ( Chicken Rice )",
+    "category_id": 10,
+    "address": "183 Đường Châu Thị Vĩnh Tế, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0470283,
+    "longitude": 108.24159,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-21:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán chay Thu",
+    "category_id": 10,
+    "address": "123 Đường Phạm Cự Lượng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0562893,
+    "longitude": 108.2375729,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-22:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Chay xinh",
+    "category_id": 10,
+    "address": "30 Đường An Thượng 8, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0480317,
+    "longitude": 108.244709,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 07:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "NEM Restaurant",
+    "category_id": 10,
+    "address": "216 Võ Nguyên Giáp, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0675122,
+    "longitude": 108.2449556,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 05:30-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Nhà hàng Nhật Miyoshi",
+    "category_id": 10,
+    "address": "227 Đường Dương Đình Nghệ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0693093,
+    "longitude": 108.2364723,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 11:00-14:00; 17:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Mỳ Quảng Cô Sáu - Restaurant",
+    "category_id": 10,
+    "address": "389 Đường Trần Hưng Đạo, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0661233,
+    "longitude": 108.229693,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-22:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bún chả cá Hờn - Restaurant",
+    "category_id": 10,
+    "address": "3 Kiệt 113 Nguyễn Chí Thanh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0740827,
+    "longitude": 108.2212407,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-20:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Mì Quảng Hồng Vân - Restaurant",
+    "category_id": 10,
+    "address": "59 Đường Lê Hồng Phong, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0640032,
+    "longitude": 108.2205832,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-13:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bravo Pizzeria - Restaurant",
+    "category_id": 10,
+    "address": "18 Đường An Thượng 24, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0526459,
+    "longitude": 108.2417111,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 16:40-23:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Nhà Hàng Mỳ Lan Châu Đỗ Bá 兰州拉面一号店",
+    "category_id": 10,
+    "address": "Đường Đỗ Bá, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0519094,
+    "longitude": 108.2463757,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-03:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "CinCin Pizzeria - Sourdough & Wood-Fired Pizza DaNang - Restaurant",
+    "category_id": 10,
+    "address": "11B2 Đường Đinh Thị Hòa, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0731069,
+    "longitude": 108.2372895,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 17:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Olivia Pizza - Restaurant",
+    "category_id": 10,
+    "address": "309 Đường Hồ Nghinh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0627602,
+    "longitude": 108.2436287,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 11:00-01:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bún bò Chum",
+    "category_id": 10,
+    "address": "78 Đường Châu Thị Vĩnh Tế, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.051573,
+    "longitude": 108.2401295,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-21:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Mai - Bún chả Obama",
+    "category_id": 10,
+    "address": "40 Đường An Thượng 5, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0482464,
+    "longitude": 108.2455492,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 24/7"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Haomi - Tiệm Mì Trộn - Restaurant",
+    "category_id": 10,
+    "address": "17 Kiệt 126 Nguyễn Duy Hiệu, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0553774,
+    "longitude": 108.2406379,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-14:00, 16:00-21:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Roly Poly Fresh Spring Rolls & Coffee Da Nang",
+    "category_id": 10,
+    "address": "05 Đường An Thượng 6, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0487934,
+    "longitude": 108.2450404,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-20:00"
+    },
+    "website": "https://www.rolypolydanang.vn/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Nhân",
+    "category_id": 10,
+    "address": "83 Phan Tứ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0462457,
+    "longitude": 108.2455441,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": null,
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "KFC",
+    "category_id": 2,
+    "address": "Thanh Khê Đông, Thanh Khê, Da Nang, Vietnam, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (fast_food)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.066512,
+    "longitude": 108.1870359,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-22:00"
+    },
+    "website": "https://kfcvietnam.com.vn",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Cháo ếch Singapore NG",
+    "category_id": 2,
+    "address": "137 Đường Huỳnh Thúc Kháng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (fast_food)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.057545,
+    "longitude": 108.2181515,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "24/7"
+    },
+    "website": "https://www.facebook.com/chaoechdanangNG/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Kebab ngon",
+    "category_id": 2,
+    "address": "21 Đường An Thượng 26, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (fast_food)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0552866,
+    "longitude": 108.2447033,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:30-21:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Waffle queen",
+    "category_id": 2,
+    "address": "68 Đường Châu Thị Vĩnh Tế, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (fast_food)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0517229,
+    "longitude": 108.2400797,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Trường Thọ Ha Noi KeBab Rice Noodlse®",
+    "category_id": 2,
+    "address": "01 Đường Trần Đức Thông, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (fast_food)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0818056,
+    "longitude": 108.247242,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://www.facebook.com/share/1CpvtJg751/?mibextid=wwXIfr",
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-19:00"
+    },
+    "website": "https://www.facebook.com/share/1CpvtJg751/?mibextid=wwXIfr",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Burger Bros",
+    "category_id": 2,
+    "address": "30 An Thượng 4, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0485431,
+    "longitude": 108.246541,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 11:00-14:00, Mo-Su 17:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Phố Nướng Tokyo Đà Nẵng",
+    "category_id": 3,
+    "address": "4 Phạm Văn Đồng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.07061,
+    "longitude": 108.2428955,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 11:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Nhóp Nhép Lẩu Nướng",
+    "category_id": 3,
+    "address": "45 Đường Hải Phòng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0722538,
+    "longitude": 108.2178675,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 16:30-23:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "cá sấu nướng Đà Thành 2",
+    "category_id": 3,
+    "address": "38 Đường Chu Mạnh Trinh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0343423,
+    "longitude": 108.2103559,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-20:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "NEM NƯỚNG THANH HÀ",
+    "category_id": 3,
+    "address": "K96/146 Kiệt 96 Điện Biên Phủ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0675559,
+    "longitude": 108.1964679,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Nhóp Nhép Lẩu Nướng",
+    "category_id": 3,
+    "address": "45 Đường Hải Phòng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0722538,
+    "longitude": 108.2178675,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 16:30-23:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Cơm trưa, lẫu nướng Rammus",
+    "category_id": 3,
+    "address": "73 Đường Lê Đình Lý, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0574296,
+    "longitude": 108.2115285,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "cá sấu nướng Đà Thành 2",
+    "category_id": 3,
+    "address": "29 Đường Doãn Uẩn, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0346103,
+    "longitude": 108.2437554,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-20:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "La Cabana - House of BBQ",
+    "category_id": 3,
+    "address": "505 Đường Trần Hưng Đạo, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0629394,
+    "longitude": 108.2302972,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lacabana.vn/web/image/866-e8968132/La%20Cabana%20restaurant%20on%20the%20street.jpg",
+    "opening_hours": {
+      "schedule": "Mo-Su 16:00-23:00"
+    },
+    "website": "https://lacabana.vn",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Nhà hàng hải sản Bé Anh",
+    "category_id": 6,
+    "address": "Lô 14-15 Hồ Nghinh, Phước Mỹ, Sơn Trà, Đà Nẵng, 베트남, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0692319,
+    "longitude": 108.2429913,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Hải Sản Đà Nẵng Bé Biển",
+    "category_id": 6,
+    "address": "202 Đường Võ Nguyên Giáp, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0686243,
+    "longitude": 108.244962,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 07:30-02:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Hải Sản A Trí",
+    "category_id": 6,
+    "address": "145 Nguyễn Đăng Giai, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.1033816,
+    "longitude": 108.2578211,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 14:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Hải Sản ÔNG MINH",
+    "category_id": 6,
+    "address": "94 Đường Võ Nguyên Giáp, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0803548,
+    "longitude": 108.2466261,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-02:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Nhà hàng hải sản Bé Anh",
+    "category_id": 6,
+    "address": "Lô 14-15  Hồ Nghinh, Phước Mỹ, Sơn Trà, Đà Nẵng, Vietnam, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0692319,
+    "longitude": 108.2429913,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Mi Quang 1A",
+    "category_id": 4,
+    "address": "Hải Phòng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0725232,
+    "longitude": 108.2189341,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxB4DxjEF3Rhye7vBLknIiNIKzPp2pCSOSFvjlGuVinm9aqQw2e-2j7ISB7yWg7r5IpaL2hcUgXUuRNct14XGxBa4Hncj43KkS98ba293WtxigEb8QNYHU4sCM6UQERnity-HtxjDmkpglI=w426-h240-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-21:00"
+    },
+    "website": "https://www.foody.vn/da-nang/mi-quang-1a",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Chay Vegetarian Restaurant Ngọc Chi",
+    "category_id": 4,
+    "address": "32 Thái Phiên, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0650511,
+    "longitude": 108.2227097,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipOpNQcMwIdm0N6DZI7R7X9JM9ZMXF4i36IIHkrt=w425-h240-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bánh Xèo Bà Dưỡng",
+    "category_id": 4,
+    "address": "23 Kiệt 280 Hoàng Diệu, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0588034,
+    "longitude": 108.2160349,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipO-0HZOH3KaOfN7Zucf8RXJDrEFbbLZYERlSCJ3=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 09:30-21:30"
+    },
+    "website": "http://banhxeobaduong.business.site/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán An Bún Chả Cá",
+    "category_id": 4,
+    "address": "109 Nguyễn Chí Thanh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0745962,
+    "longitude": 108.2206238,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipP-ztuJSGl3rl2ElErMVCJS6jpWhfbiZkNpsVZV=w408-h272-k-no",
+    "opening_hours": null,
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Chay Ďiêu Hoa",
+    "category_id": 4,
+    "address": "87/4 Nguyễn Du, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0784588,
+    "longitude": 108.2190936,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSw3N54-mG68G30FYJLhwLy_o0nG8J6FK_0YxEZpEBags_jbQ31o62AzlWV8bsmVEsjorHe1ye3mPdj37v3Wd2deotziSthB7pTW8yUOzOrKvgQZ6NmMnr-B1zC-kQXRi7F6yCA9=w408-h544-k-no",
+    "opening_hours": null,
+    "website": "https://www.facebook.com/Qu%C3%A1n-Chay-Di%E1%BB%87u-Hoa-1590578277919741/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bánh bèo 291 Nguyễn Chí Thanh",
+    "category_id": 4,
+    "address": "291 Nguyễn Chí Thanh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.066938,
+    "longitude": 108.220909,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxI_XezDHgf-eQ4qeVUB7-SAi5xfbwHNtVzUmorMuqLWZSLTJ0q1ZRaglW8GKY3KHWg4M_LxU4G0sYIcJB1tXz9V8yajJHOTLIhZjsnPjqk67_LwnX3rfcRGpmAj_bUwO5mU4pz=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 12:00-20:00"
+    },
+    "website": "https://www.foody.vn/da-nang/quan-tam-banh-beo-banh-loc",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Bánh Bèo Nóng",
+    "category_id": 4,
+    "address": "90 Đinh Tiên Hoàng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0740857,
+    "longitude": 108.2095703,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyC0upVO_bTZEksPRtghfegVNYZPEpcanx5sJzWNM29y7oOSkUG27SPaIr6hSQpVpTogq78fTH533Kb9ekYxwBHImstuSCabZ9VfP3xecnUjCgtiZ2mxHFu78GHN4VFuaql2cHC=w426-h240-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 05:30-21:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "BÁNH TRÁNG THỊT HEO ĐẠI LỘC - Quán ĐẠI LỘC 97 & 148 Trưng Nữ Vương.",
+    "category_id": 4,
+    "address": "97 Trưng Nữ Vương, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0579908,
+    "longitude": 108.2208559,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipNJDCKtcEI-GWADGy4-XUuMqoDM75v2r79EsrWL=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-21:00"
+    },
+    "website": "https://www.facebook.com/QuanDaiLoc.97TrungNuVuong?mibextid=LQQJ4d",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Sangha - Vegetarian Restaurant",
+    "category_id": 4,
+    "address": "84 Đường Hoàng Văn Thụ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0629555,
+    "longitude": 108.2195011,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipOxNRrdEeYI5RNItOhHhw8Xa1gR7TliDblU4983=w408-h271-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-20:00"
+    },
+    "website": "https://www.facebook.com/sanghadanang",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Đà Nẵng Cơm chay 2",
+    "category_id": 4,
+    "address": "329 Dương Đình Nghệ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0707582,
+    "longitude": 108.2329541,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxOXvA1FmQDgdgDH6cKjQTb_PVRZtTp9DJvcEdPvw_YlpPJUSn5VhZonCmePY7lAhtOHbOpR0xEX8CeSjfp7JPb4AqbKcn8Qbpmm9kHVj-xRJTZg_yHrMlB_yBibf5tgMov_NlERQ=w408-h307-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 07:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bao An Macrobiotic",
+    "category_id": 4,
+    "address": "56 Đường Hoàng Bích Sơn, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0753828,
+    "longitude": 108.2409602,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipMC6Q92Kn7Ab2oQB5HNd4FfwVf_etjmcTaFl1yo=w408-h408-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Sa 06:30-20:30; Su 06:30-15:30"
+    },
+    "website": "https://thucduongbaoan.com.vn/thuc-don-bao-an/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Phú Hồng",
+    "category_id": 4,
+    "address": "19 Đường Yên Bái, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0691035,
+    "longitude": 108.2229133,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxGQNWSkPBlBvpNymuNPATwRAfRnZUS27-ytRXFgBi_TYGHh9psmtRaKdoZpYK6efYcT84fsEMHwM7Gvk1p4dCSrjN-LaYXbI_fKsh3OHsfJ44lXUyRMx6AjFxqv5dwa4FWbgfiFmez7zyb=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-21:00"
+    },
+    "website": "https://www.foody.vn/da-nang/bun-thit-nuong-phu-hong",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bún Bò Bà Diệu",
+    "category_id": 4,
+    "address": "17 Trần Tống, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0585612,
+    "longitude": 108.210864,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipNTXFZIE0bD8a0T1RNBlrvFk7xOUzUIX48JdHKO=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 13:00+"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Chay Huệ Tâm",
+    "category_id": 4,
+    "address": "7 Ngô Gia Tự, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0710615,
+    "longitude": 108.2169829,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyA68-IGIGCWEM_0tyhoB9Nu6OkAYSHPdemyozhI-wWFcyqLsM4j8AcGgop4OD7KY4JD7RCY7rGn1nqiyqfrrBVfVu-eR4dqKePCDxmvCW6Yk91h_2aLpuRWJTapiUjbq2-B3RL=w408-h544-k-no0",
+    "opening_hours": null,
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Mỳ Quảng Bà Mua",
+    "category_id": 4,
+    "address": "195/2 Đường Nguyễn Văn Thoại, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0556931,
+    "longitude": 108.2432927,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSzo3mpu8T02Aqta_E3ElsNc6N4KiRpxtW8Ciys7JYlnSE_bG--Oj8BozZpkGWK_G4Y2R0hX6RW2aUOHfye6389aXRIwx2oLLidzAtFByxbls5fyzjCZnNOxHshEOmYhgWd-YhKc1FdTL4ZF=w408-h306-k-no",
+    "opening_hours": null,
+    "website": "https://myquangbamua.com.vn/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Cháo ếch Singapore NG",
+    "category_id": 4,
+    "address": "137 Đường Huỳnh Thúc Kháng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (fast_food)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.057545,
+    "longitude": 108.2181515,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipMkCmSExNWxjEf9ZnxV2Y-7a7j2HZkEu7NaBXL_=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "24/7"
+    },
+    "website": "https://www.facebook.com/chaoechdanangNG/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Carol Lounge",
+    "category_id": 4,
+    "address": "28d Đường Đống Đa, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0823478,
+    "longitude": 108.2203289,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwPCX6q33SrYRvBQhNhkCRGxMd_AeXihd5PqaqcWcAGb-njkH4Ayw4566WKMz_ku78PisJpS1Inh-WbZ6idcSZRMwZ4TzwCr0VbD9BhIukjFYF6dqDV0Uene-OKB7LXfMcNdTh-=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 20:00-03:00"
+    },
+    "website": "https://carollounge.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Làng Tôi - Bánh Khoái Cá Kình Huế",
+    "category_id": 4,
+    "address": "85 Kiệt 227 Đường Nguyễn Văn Thoại, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0583075,
+    "longitude": 108.2443933,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipOcNU9o7dHQLw-Onp4VRiKFoAM1gWNITTV95sdQ=w408-h317-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Mai - Bún chả Obama",
+    "category_id": 4,
+    "address": "40 Đường An Thượng 5, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0482464,
+    "longitude": 108.2455492,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipOoYpmbevJ-c-9_3n5y785tfaYr5A3MJPWW5JRO=w426-h240-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-20:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bún bò Chum",
+    "category_id": 4,
+    "address": "78 Đường Châu Thị Vĩnh Tế, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.051573,
+    "longitude": 108.2401295,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyF9NbOFWHkB_u8iTeetUVgWyb5y2aQ5G1go37C69uUJbID3t50f0nlXdKGPPXNcGhG4dhrZrNIFQzQpdoRvHcaz8hXDl0sUc4aQupvMic82a7bRKBO3ZpXSOfbqG2U44WvdNjZag_ZEgem=w408-h349-k-no",
+    "opening_hours": null,
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "XÓM MỚI GARDEN ĐÀ NẴNG (씀모이가든 다낭)",
+    "category_id": 4,
+    "address": "222 Đường Trần Phú, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0635146,
+    "longitude": 108.2232424,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSy84G_6_2Wwa-MXRmsgjpdE1JepZXHgYVHJu7aBbkA1j2RLBE1sg0qZ3A4xLa9TBsqbx9YWqqBJURtGJ-pTPK-Vt266DWiS03KQtADBK4tjCyFxCPVHX9yEohqK-kjbO2WzAk-x=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 10:30-22:00"
+    },
+    "website": "https://www.xommoigarden.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Mỳ Quảng Cô Sáu",
+    "category_id": 4,
+    "address": "389 Đường Trần Hưng Đạo, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0661233,
+    "longitude": 108.229693,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "06:00-22:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Luk Lak",
+    "category_id": 4,
+    "address": "28 Bạch Đằng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0786668,
+    "longitude": 108.2236675,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 07:00-22:30"
+    },
+    "website": "https://luklak.vn/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bánh Bèo Nóng",
+    "category_id": 4,
+    "address": "90 Đinh Tiên Hoàng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0740857,
+    "longitude": 108.2095703,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 05:30+"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Nhân",
+    "category_id": 4,
+    "address": "83 Phan Tứ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0462457,
+    "longitude": 108.2455441,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": null,
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Nga 2",
+    "category_id": 4,
+    "address": "Hải Hồ 43B, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0797334,
+    "longitude": 108.2151698,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": null,
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Vietnom Local Eatery",
+    "category_id": 4,
+    "address": "97 Mai Thuc Lan, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.047867,
+    "longitude": 108.2438751,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 07:30-22:00"
+    },
+    "website": "https://vietnom.kitchen/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Trường Thọ Ha Noi KeBab Rice Noodlse®",
+    "category_id": 4,
+    "address": "01 Đường Trần Đức Thông, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (fast_food)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0818056,
+    "longitude": 108.247242,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://www.facebook.com/share/1CpvtJg751/?mibextid=wwXIfr",
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-19:00"
+    },
+    "website": "https://www.facebook.com/share/1CpvtJg751/?mibextid=wwXIfr",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Quán Phở Hồng",
+    "category_id": 4,
+    "address": "10 Lý Tự Trọng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0775502,
+    "longitude": 108.2217728,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:30-20:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Hủ Tiếu Nam Vang Minh Hiếu",
+    "category_id": 4,
+    "address": "48 Đường Trịnh Công Sơn, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0347413,
+    "longitude": 108.2204317,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 16:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bánh Tráng Cô Tý",
+    "category_id": 4,
+    "address": "Kiệt 172 Lê Đình Dương, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0626939,
+    "longitude": 108.2163553,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": null,
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bánh Tráng Kẹp Dì Em - Asian",
+    "category_id": 4,
+    "address": "252 Nguyễn Hoàng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0585655,
+    "longitude": 108.2132371,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 12:00-21:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bánh mì Chang Chang",
+    "category_id": 4,
+    "address": "56b Ông Ích Khiêm, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0774255,
+    "longitude": 108.2119935,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 07:30-20:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Kem bơ Bé Huệ",
+    "category_id": 7,
+    "address": "Đường An Thượng 38, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (ice_cream)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0506693,
+    "longitude": 108.2445233,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-21:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Kem dừa Mã Lai",
+    "category_id": 7,
+    "address": "14 Đường Lê Đình Lý, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (ice_cream)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0590727,
+    "longitude": 108.21117,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 10:30-22:45"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Kem dừa Mã Lai",
+    "category_id": 7,
+    "address": "18 Phan Tứ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (ice_cream)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0458995,
+    "longitude": 108.2440724,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 15:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "The Crafty Cow",
+    "category_id": 7,
+    "address": "226 Bạch Đằng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (ice_cream)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0642922,
+    "longitude": 108.2240361,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 15:15-22:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Kem Dừa Mã Lai",
+    "category_id": 7,
+    "address": "47 Yên Bái, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (ice_cream)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0674825,
+    "longitude": 108.222659,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": null,
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Sơn",
+    "category_id": 1,
+    "address": "12 Võ Văn Tần, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0672283,
+    "longitude": 108.2047003,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSy4qNU5eoVe3BNmWr0y3uWUoeNhiQy6NlgzTd2rX16S49FtyOqJeRa6n9NHajRsLVdF3J6jROmnyYZByNVpLC75kmblJ8_2-4LIRN4XE4SSXxfeeHxioPG73QvETKgnNdorKS2q2g=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:30-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Cà Phê Chim 606",
+    "category_id": 1,
+    "address": "606 Đường Ông Ích Khiêm, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0616284,
+    "longitude": 108.2164509,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwTa11bCTP0nO0GSuR5yMvqeNlJ5sLWnrd95HxZkH7JM7GYtwpxyZSRiD47q_g9Di_UOR-DCSM7b_XWlIrC0IfxhpyCv26TtF_LY29pxGJvBbusExJSfVAWWsybFZknst9N7um3Ng=w426-h240-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 05:00-16:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Café Caracoli",
+    "category_id": 1,
+    "address": "2 3 Tháng 2, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0829842,
+    "longitude": 108.222509,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSw86-R4dSlnZLUxKUj27805pAvLRhIibOipPO_IOxJpq8ulevwGU1PWJBd6M_3g-R8hdVEQaGT3u8X5b5acVr1pRI8LJbH4X7eJyT66-ChZQXoLJG3RKIb4vSQFE07uK13c0Tla=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-18:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "SIX ON SIX",
+    "category_id": 1,
+    "address": "64 Đường Bà Huyện Thanh Quan, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0432955,
+    "longitude": 108.2441897,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipNeem12Ck5SjXn4XloC56tJMIRmAd37VTyHdOKq=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 07:30-21:30"
+    },
+    "website": "https://www.facebook.com/sixonsixcafe/menu/?id=100063485023387&sk=menu",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Maison du Café",
+    "category_id": 1,
+    "address": "216 Võ Nguyên Giáp, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.067526,
+    "longitude": 108.245011,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipNZBPQ4EcfOhhdT05Cg-uLDrTR4oYLcCwMkPmDq=w408-h271-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-22:00"
+    },
+    "website": "http://pubhtml5.com/center/flips/book.php?cid=140560",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Hachi Coffee",
+    "category_id": 1,
+    "address": "59 Thái Phiên, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0650395,
+    "longitude": 108.2219481,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwap8r9n6QlBB_HoErMI-uuupPRaGm1s0mt4x5x37qaqqC5EQjNTHI6HVIm8pkNWmvVNAEDVpKLrQQOgLpJ5d1MGqOrw2PYMzvGqzjB474hRi5WxnvPath1NiFNLo5-XDdIsZRt=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Green Coffee 165",
+    "category_id": 1,
+    "address": "165 Đường Hà Huy Tập, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0638679,
+    "longitude": 108.1920138,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxc2mFPxGe-WYsSKXDmRlDjhPlCdbySeN5Fd5SQWr7ZX2Ou2_M5yUNgYkse51bcTV0x7Z3jDpYJOcYKwRtKTa2qBmycEFH68MYna0O4UI_cynlMb9tRbgnl_Bd3zSDTYAYddtEZ=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:30-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Brewman Coffee Concept",
+    "category_id": 1,
+    "address": "27/21 Thái Phiên, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0643013,
+    "longitude": 108.2229858,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyuRE-_bHJyF0VMlGgTZOxE3ESvC2x76oLidvlc8Fka53F-RoIeHH8Yqt618GlhxLlponjuqdulAtBWDhVQ8eji_ww4YIlLDCtgthYjqOmTRn3eRWhCxot_Smb3O_spYhl2oV6iK2HUdDvo=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:30-22:00"
+    },
+    "website": "https://www.facebook.com/BrewmanCoffeeConcept/menu",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bentley Cafe",
+    "category_id": 1,
+    "address": "CLô 40 30 Tháng 4, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0513235,
+    "longitude": 108.2403147,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSz0l13BtYbC72lRH41kN6ZNFkAtRdghaTbjT7Qom6eU6129f6lkfq87fwyvuKnik7_PAhZdw1mPX4QfXvcSPsirPRjj5pzwQP_b3nKFvj990-gxKNZaVXeBRfJeFca1ojcbGc20=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 07:00-23:30"
+    },
+    "website": "https://www.facebook.com/Bentley-Milktea-COffee-100710488646797/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "43 Factory Coffee Roaster",
+    "category_id": 1,
+    "address": "422 Ngô Thì Sĩ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0480968,
+    "longitude": 108.2460362,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipOBqtvTaVfj4N8Ujc8o_77tuTd6HhNIOuDK6rSx=w408-h290-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-22:00"
+    },
+    "website": "https://xliiicoffee.com/en/location/xliii-coffee-da-nang/menu/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Indochine Coffee & Food",
+    "category_id": 1,
+    "address": "11 Hà Chương, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0653876,
+    "longitude": 108.2445632,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipPbfhMNgikFOe8jkf7CHuEz78o-z_AuQiU9GCgG=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Doll coffee",
+    "category_id": 1,
+    "address": "k1/151 Đường Nguyễn Văn Thoại, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0549519,
+    "longitude": 108.241287,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipP24d9szQU6-NJ4NBwuX4dM_uW6MtARvqVpLGMD=w408-h272-k-no",
+    "opening_hours": {
+      "schedule": "24/7"
+    },
+    "website": "https://www.facebook.com/dollcoffee.vn#",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Cà phê chim  K69 chị Yến",
+    "category_id": 1,
+    "address": "K69/16 Đường Lý Thái Tổ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0656191,
+    "longitude": 108.2085147,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwWekZlaFr-M5QJcOuXVH_gvDM4ySIl7eJd589jZKQ2zdgAj3tV4IBhMBRlX3_qibaAaX9joklewvjFiDHlULWk8IZvx19Hsg1t_vXLkxdist0PXitlRKd6yj-6bFgEulK7l8t1ng=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-20:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Cà phê 27",
+    "category_id": 1,
+    "address": "06 Đường Nguyễn Tri Phương, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0649681,
+    "longitude": 108.2027737,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSw-j1hc2AdqPP3yU0yttY0m5cy4ViSt5RseBLzdz0biEJdB8e_Y4kghyMbLhXwMA2TZ7LeuyX3mYKZLBK1wo28S5_oAcYG9sFVPQPZB0EaXt8PU3Zel6Ks4c-wbzSnCtL5OnjX_6A=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:30-22:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Roots Plant-Based Café",
+    "category_id": 1,
+    "address": "27 Trần Bạch Đằng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0486599,
+    "longitude": 108.2478755,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipNVbqzVAqVBM6SYnNBrhgnzpWEXGzSZVgs7v7el=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 08:30-22:45"
+    },
+    "website": "https://rootsplantbasedcafe.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Art Coffee",
+    "category_id": 1,
+    "address": "77 Đường Thạch Lam, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0565444,
+    "longitude": 108.2446766,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipNIHCMKfL2ZdVEp58zUS5bHWbVr2mF4oqf6bFaJ=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-17:30"
+    },
+    "website": "https://website--7227724345093534127171-cafe.business.site/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Coffee Thanh Hà",
+    "category_id": 1,
+    "address": "10 Đường Trần Bạch Đằng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0590473,
+    "longitude": 108.2445472,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipMyZ4ud2xq6x3j-dmjhERe9MA4RwziFuISFGtYG=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-21:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Tiệm cà phê hạnh phúc",
+    "category_id": 1,
+    "address": "126 Đường Châu Thị Vĩnh Tế, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0496739,
+    "longitude": 108.2406526,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=EzN1Pl8a07S6gkjYiBLd2w&cb_client=search.gws-prod.gps&w=408&h=240&yaw=119.22349&pitch=0&thumbfov=100",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-22:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "PHIN 88",
+    "category_id": 1,
+    "address": "88 Đường Lê Hữu Trác, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0582419,
+    "longitude": 108.2399082,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSy0nyPrp7cw4hL6-03KtAWFrYJwrKnytnBbDjfeMVSYobmohAP_3iK0QSBh__1p_wZTasF5DTpOKO-cbkTyeu-O2uUzZR150Jy8TYSMFwVC6MY6SRriRH3iGU3Ht6TZhuBJTd8=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "GOLO Coffee & AP",
+    "category_id": 1,
+    "address": "82 Đường Lê Quang Đạo, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.050279,
+    "longitude": 108.2454308,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSy_mU9p6bx1UmC7uOnaL2KGqo0la0U23JBT-vpW-arg6pN-6VXXrKpiMjU14S9Vv5159yEnvQ-9ORNyZ1AuceRRmNqnv6UHW-LtC5At1asfSUQQjrEy0pTQAuB6VnLhAzqdjtnlQ3YC9GSJ=w518-h240-k-no",
+    "opening_hours": {
+      "schedule": "Tu-We, Fr-Su 07:00-22:00; Mo, Th 07:00-19:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Bro's Kafe",
+    "category_id": 1,
+    "address": "39 Đường Ngô Thì Sĩ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0472109,
+    "longitude": 108.2431257,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipPbg_IEUVBcqMwrMaNeh735Ckxb5DvD2zpTZvW3=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 07:00-21:30"
+    },
+    "website": "https://broskafe.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "DREAMER",
+    "category_id": 1,
+    "address": "230 Nguyễn Công Trứ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.065937,
+    "longitude": 108.2368088,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipOhUjKepeVzJn3gLLcz6Lz9XMhJ2CooxvUCphrq=w408-h293-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 07:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "GỐM Garden Coffee",
+    "category_id": 1,
+    "address": "8a Đường Mỹ Khê 5, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.061519,
+    "longitude": 108.2413131,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipPFMbUAMhuRsZHt2nJ2g02FlyJmP-vfVD5fQQrm=w408-h272-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:30-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Àla Cafe",
+    "category_id": 1,
+    "address": "27 Kiệt 113 Nguyễn Chí Thanh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0736742,
+    "longitude": 108.2217151,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipNNEMbMqHWGdlegn47KJhMcP5-2Dc0fJ2ImVtA6=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 07:00-18:00"
+    },
+    "website": "https://alacafe.vn/product/menu-do-uong-ala/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Guming Tea & Kafei",
+    "category_id": 1,
+    "address": "109-111 Đường Phan Đăng Lưu, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0360364,
+    "longitude": 108.2167462,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSy_8NIysbG4WAtiy0n2rQUEpjnN4LkPqGcGXX3DBTFF3DqKIdXk5OjX43NQ5KMPol_I95eDhxXEgk6U1SNyOJygCUJ7OtEZByO1906ef9HjK2J76ic0iqvidL1EoO03fZaHw-o=w408-h305-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 7:30-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Minori",
+    "category_id": 1,
+    "address": "Đường Trần Hưng Đạo, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0660771,
+    "longitude": 108.2296973,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipNjhHIGiqmMQiko6v0E9jqc7jb7qMXr5SSQ2Lp8=w408-h272-k-no",
+    "opening_hours": {
+      "schedule": "07:00-22:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Becoming Specialty Coffee",
+    "category_id": 1,
+    "address": "74 Đường Thi Sách, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0537961,
+    "longitude": 108.2055094,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipMyYohAosByPuFtSQJJbDRTUPZpClEBpIacr5d6=w408-h510-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-21:00"
+    },
+    "website": "https://share.google/ycQOaQBwfVO149Pca",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Chong Banh Mi, Coffee & Food",
+    "category_id": 1,
+    "address": "12 Đường An Thượng 30, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.051328,
+    "longitude": 108.2463316,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyfWq3V6oodc1r7EF16Vqa6_Spcdj6OStHz0CLUDvcqGlD8Q7Q69RFjSerOxAHh_YRIDvpy3jaannhErV6_vYJFYBT6SDkXG03jQFIFb25sfT3lKy1D7z97mBA2WyPwlxaH_9kEu5z1ASM=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 08:00-23:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Tabiji Coffee",
+    "category_id": 1,
+    "address": "36 Kiệt 72 Nguyễn Văn Thoại, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0530294,
+    "longitude": 108.2406141,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwvjWT7S3QymyYgoQr8AaRDbHKOG4gK8uXjXoCMcrTyW7EwEsW7pLN3d8FPI78jG1Wj10v85YG2xBXTsnUijELfpJZqsoCQ8_baY_D7k-BNkdrl_6GcbS9utb7G8eJYy7uPNdbQ4C60iVM=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 07:30-19:30"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Oslow Coffee",
+    "category_id": 1,
+    "address": "89 Đường Sương Nguyệt Ánh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (cafe)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0683888,
+    "longitude": 108.2425594,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipP3i6a5cecLeIB8jYpNj-8yA7__ICs2rSFcRgL4=w408-h543-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 07:00-22:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Casa Breeze Restaurant & Bar",
+    "category_id": 8,
+    "address": "148 Võ Nguyên Giáp, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0473675,
+    "longitude": 108.2500022,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipMXegVCj-ErOhiO8UtXNgnrgqC8yCQwFCp12Iw=w408-h272-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 14:00-23:00"
+    },
+    "website": "https://bit.ly/CasaBreeze",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Kangaroo Bar & Burger",
+    "category_id": 8,
+    "address": "229 Hồ Nghinh, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0666644,
+    "longitude": 108.2430919,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipMog5mid5KvoYFAnQD_xCeqjY6EXBq-Z7JVY9oc=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 07:30-22:00"
+    },
+    "website": "https://www.kangaroo-bar.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "The Original Shamrock Sports Bar Da Nang 🇮🇪 since 2019",
+    "category_id": 8,
+    "address": "11 An Thượng 32, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0509481,
+    "longitude": 108.2463653,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipNWSeW_0UsVWoBcdlJVvrX9SMIuJ963l7qlvNb_=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "24/7"
+    },
+    "website": "https://shamrocksportsbar.com",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "The Craftsman Cocktail Bar",
+    "category_id": 8,
+    "address": "48 Phan Tứ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0465373,
+    "longitude": 108.2470111,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipMoUiF1JmCGJcdV18xT-wy-HrfCg9Uay-jnCnxp=w426-h240-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 00:00-01:00; 19:30-00:00"
+    },
+    "website": "https://www.facebook.com/thecraftsmancocktailbar/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Carol Lounge",
+    "category_id": 8,
+    "address": "28d Đường Đống Đa, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0823991,
+    "longitude": 108.2204005,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwPCX6q33SrYRvBQhNhkCRGxMd_AeXihd5PqaqcWcAGb-njkH4Ayw4566WKMz_ku78PisJpS1Inh-WbZ6idcSZRMwZ4TzwCr0VbD9BhIukjFYF6dqDV0Uene-OKB7LXfMcNdTh-=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 21:00-03:00"
+    },
+    "website": "https://drive.google.com/drive/folders/1R0jPKV_XokuZoEeOgFf7Awv2GQNrXDJS",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Maia Beach Bar",
+    "category_id": 8,
+    "address": "284 Võ Nguyên Giáp, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0515244,
+    "longitude": 108.2485711,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipPH7XVBNuFnFQ-Y_IcRSsiFWRjdOlugNpIi-IxM=w408-h408-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 8:00-01:00"
+    },
+    "website": "https://www.facebook.com/MaiaDanang",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Paradise Beach Bar & Cinema Danang",
+    "category_id": 8,
+    "address": "270 Võ Nguyên Giáp, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0534593,
+    "longitude": 108.2481303,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipPlbCmQ4Y3wStRBnB-uqnu6eobj1ICwN5GF_-IM=w408-h725-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 07:00-02:00"
+    },
+    "website": "https://www.dropbox.com/sh/gklszdwjy4omra5/AADovHFFXBI553nz6fCFv93ia?dl=0",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Section 30",
+    "category_id": 8,
+    "address": "26 An Thượng 30, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0513039,
+    "longitude": 108.2461773,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipP_jDRGKhERlusex5PsmlJgEHr44kcEZUrDjvXY=w408-h271-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 16:00-01:00"
+    },
+    "website": "https://fb.com/section30",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Sky36 Bar & Dining",
+    "category_id": 8,
+    "address": "36 Bạch Đằng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0748392,
+    "longitude": 108.2246579,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwnAEO25YDNUSeEPUm8A69iMyV3-TFQi99kVl0C3Tvm4n6e2KThNYfj4LRsQCf3582XsRTim4K_L7wexUtOJSb9J33iC5XDcwaEjlu1CeXrWiEnumBo0gpOmoWdCNACtoIG2waL=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 18:00-02:00"
+    },
+    "website": "https://sky36.vn/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Hybrid Sports Lounge: Watch | Play | Dine",
+    "category_id": 8,
+    "address": "26 Đỗ Bá, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0517792,
+    "longitude": 108.2459128,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipN33TSFCNuJoRhE5Ig5-DzKJqTbzCpwOs8RwBXG=w408-h272-k-no",
+    "opening_hours": {
+      "schedule": "24/7"
+    },
+    "website": "https://www.hybridpoolandlounge.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Roadhouse Burgers",
+    "category_id": 8,
+    "address": "203 Đường Lê Quang Đạo, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0484009,
+    "longitude": 108.2462291,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipMhsP8uThguN1pCBifG95OyTsdklqZc3QcAv6px=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 11:30-01:00"
+    },
+    "website": "https://www.facebook.com/roadhousedanang/menu/?id=100057542705631&sk=menu",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Game On Bar",
+    "category_id": 8,
+    "address": "155 Lê Quang Đạo, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0510765,
+    "longitude": 108.2454131,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwkh7SyLuN-e10kpdlWPwgqxuX9_I_x1ECKwuq5AcUF68gGsmOYg6iWVCPRyGLGiwwt-6WtE9aCzx0OoP6eSK9q2nqNvq_bOlG3gdXsiOiPx7bAZ1XK45n0OnDNVzvXJzRfhY7s=w408-h543-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 11:00-03:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Tê Bar - Speakeasy",
+    "category_id": 8,
+    "address": "39-41 Đường Nguyễn Thái Học, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0679973,
+    "longitude": 108.2234339,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipPq7XmkVrGAny6f056ZxCYi3zXr_jS1SrZ7vfP2=w408-h271-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 19:00-01:30"
+    },
+    "website": "https://drive.google.com/file/d/19WDdL4Zh2oMJgeQJtfwLGA_SFzImQ9Hf/view?usp=sharing",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Tiệm Bia Gà - Rooster Beers Taproom Da Nang",
+    "category_id": 8,
+    "address": "27 Thái Phiên, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0649245,
+    "longitude": 108.2228845,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSw2BK2gp3YbuEfgGQWRX-TkOyb15uNdujfBWW3PPKzzwNTzrlCVr5bRPE9oeKSbFQNiEAEf7GIm3tKidqfcJw5CaYsiV8Dxf2YKzpstIMyzq4zOUNd0_swoKHhMb0EUGfcpqY34tMv1ies=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 16:00-01:00"
+    },
+    "website": "https://roosterbeers.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "BREWHAHA - 5 Elements Brew Co. Taproom",
+    "category_id": 8,
+    "address": "16 Thái Phiên, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0650076,
+    "longitude": 108.2234405,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipPe5q0W5kQbv_PVAGStRyETBpv2fWpMlLuonecW=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 10:00-00:00"
+    },
+    "website": "http://brewhaha.vn/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Sova Lounge Da Nang",
+    "category_id": 8,
+    "address": "29 Đường An Thượng 29, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (bar)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0520338,
+    "longitude": 108.2458141,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipMGAm9X5LYpZnGEW7giAWtt7S9MJo3Z8OXi6w7e=w426-h240-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 18:00-02:00"
+    },
+    "website": "https://sova.social/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Tiệm Bánh Ngọt Hương Nam Bỉnh Gia - Huong Nam Bakery",
+    "category_id": 5,
+    "address": "109 Trần Phú, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0689123,
+    "longitude": 108.2240457,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=lYk5Sk4ahuIllEWFsvInZA&cb_client=search.gws-prod.gps&w=408&h=240&yaw=320.99225&pitch=0&thumbfov=100",
+    "opening_hours": {
+      "schedule": "Mo-Su 07:00-21:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Đồng Tiến Bakery",
+    "category_id": 5,
+    "address": "1201 Đường Ngô Quyền, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0540638,
+    "longitude": 108.2368739,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipPjztypUzMqajpnAybcJUBq1pVbnEt-o6_yBE6y=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 05:00-22:00"
+    },
+    "website": "http://dongtienbakery.com.vn/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Đồng Tiến Bakery",
+    "category_id": 5,
+    "address": "575 Đường Điện Biên Phủ, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.065061,
+    "longitude": 108.1839569,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipP96iznSZ1Z-PZRVwRqmIykRN5V61B4sKqLOqho=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 05:30-22:30"
+    },
+    "website": "http://www.dongtienbakery.com",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Paris levain bakery & cafe",
+    "category_id": 5,
+    "address": "112 Đường Trần Bạch Đằng, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0546388,
+    "longitude": 108.2459904,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipOX2nY4T_7KTltmNcRBuOsM36hi02CzqddjCfyb=w408-h271-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 06:30-10:30"
+    },
+    "website": "https://parislevainvn.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Anh Quân Bakery",
+    "category_id": 5,
+    "address": "34 Đường Hồ Quý Ly, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.076543,
+    "longitude": 108.1725853,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/p/AF1QipPcqZneA-6INYW7CwnITTaggEv-1h3YNJK-adph=w408-h306-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 05:00-23:00"
+    },
+    "website": "https://anhquanbakery.com/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Chè Liên Đà Nẵng",
+    "category_id": 9,
+    "address": "189 Đường Hoàng Diệu, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0606096,
+    "longitude": 108.2171498,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSzclmC5YqdVzCFNSQMuJ60dontLdsmxfNKzGBYUwtEUU-BuyvTzPaRvQ3zyDyp4ipWW2mPqRHOxutLAP-GUB-eXfx2fxiztn8Cd4ofA-ozX1e4jOQLOzcNf4RPDvtR74ppzadjIEW25wS9a=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 07:30-23:00"
+    },
+    "website": "http://www.chelien.com.vn/",
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  },
+  {
+    "name": "Sinh Tố Chè Thái A.Bé",
+    "category_id": 9,
+    "address": "101 Thái Phiên, Đà Nẵng",
+    "description": "Một địa điểm tuyệt vời tại Đà Nẵng (restaurant)",
+    "owner_id": null,
+    "average_rating": 0,
+    "latitude": 16.0652141,
+    "longitude": 108.2201962,
+    "is_open": true,
+    "review_count": 0,
+    "image_url": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSw3D8XM6LdcxPJJaY6bJmpKt5xqIujZReo9Y7nSqnnzwCPRCOqnC7TZfUKPZvJHkRWT37HbZIcrR08Z_4VDefJM-ri7hxi3En_cxrcf7BWjLVXmRjtMxPTTggND_Z9w2y2FxL84kQ=w408-h544-k-no",
+    "opening_hours": {
+      "schedule": "Mo-Su 09:00-00:00"
+    },
+    "website": null,
+    "status": "approved",
+    "createdAt": "2025-12-28T02:02:11.838Z",
+    "updatedAt": "2025-12-28T02:02:11.838Z"
+  }
+];
+    
+    // Convert ISO string dates to Date objects and serialize opening_hours to JSON string
+    const restaurantsWithDates = restaurantsData.map(restaurant => ({
+      ...restaurant,
+      createdAt: new Date(restaurant.createdAt),
+      updatedAt: new Date(restaurant.updatedAt),
+      // Serialize opening_hours object to JSON string for MySQL JSON type
+      opening_hours: restaurant.opening_hours ? JSON.stringify(restaurant.opening_hours) : null
+    }));
+
+    await queryInterface.bulkInsert('restaurants', restaurantsWithDates, {});
+  },
+
+  async down (queryInterface, Sequelize) {
+    await queryInterface.bulkDelete('restaurants', null, {});
+  }
+};

@@ -1,0 +1,263 @@
+.cardButton {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cardButton:focus-visible {
+  outline: 2px solid #F58634;
+  outline-offset: 4px;
+}
+
+.cardButton:hover {
+  transform: translateY(-2px);
+}
+
+.cardActive {
+  transform: translateY(-2px);
+}
+
+.cardActive .card {
+  border: 2px solid #F58634;
+  box-shadow: 0 8px 20px rgba(245, 134, 52, 0.15);
+}
+
+.card {
+  display: flex;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 120px;
+  height: 120px;
+  min-width: 120px;
+  min-height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 1rem;
+  flex-shrink: 0;
+}
+
+.cardImagePlaceholder {
+  width: 120px;
+  height: 120px;
+  min-width: 120px;
+  min-height: 120px;
+  border-radius: 12px;
+  margin: 1rem;
+  flex-shrink: 0;
+  background-color: #f5f5f5;
+}
+
+.cardContent {
+  padding: 1rem;
+  padding-left: 0;
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.heartIcon {
+  color: #aaa;
+  cursor: pointer;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
+}
+
+.starIcon {
+  color: #FFC107; /* Màu vàng */
+  margin-right: 0.25rem;
+}
+
+.score {
+  font-weight: bold;
+  color: #555;
+  margin-right: 0.25rem;
+}
+
+.reviews {
+  color: #777;
+}
+
+.addressRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.address {
+  display: flex;
+  align-items: center;
+  color: #777;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.address svg {
+  margin-right: 0.25rem;
+}
+
+.distance {
+  font-size: 0.8rem;
+  color: #4b5563;
+  white-space: nowrap;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.statusOpen {
+  color: #008000; /* Màu xanh cho "Đang mở cửa" */
+  font-weight: 600;
+}
+
+.statusClosed {
+  color: #dc2626; /* Màu đỏ cho "Đã đóng cửa" */
+  font-weight: 600;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tag {
+  background-color: #f0f0f0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.price {
+  font-weight: bold;
+  color: #555;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablet (768px và nhỏ hơn) */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: row;
+  }
+
+  .cardImage,
+  .cardImagePlaceholder {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    margin: 0.75rem;
+  }
+
+  .cardContent {
+    padding: 0.75rem;
+    padding-left: 0;
+  }
+
+  .name {
+    font-size: 1rem;
+  }
+
+  .rating {
+    font-size: 0.85rem;
+  }
+
+  .address {
+    font-size: 0.85rem;
+  }
+
+  .info {
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile (480px và nhỏ hơn) */
+@media (max-width: 480px) {
+  .cardImage,
+  .cardImagePlaceholder {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+    margin: 0.5rem;
+  }
+
+  .cardContent {
+    padding: 0.5rem;
+    padding-left: 0;
+  }
+
+  .name {
+    font-size: 0.95rem;
+  }
+
+  .rating {
+    font-size: 0.8rem;
+    margin: 0.2rem 0;
+  }
+
+  .address {
+    font-size: 0.8rem;
+  }
+
+  .addressRow {
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .distance {
+    font-size: 0.75rem;
+  }
+
+  .info {
+    font-size: 0.8rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tags {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .price {
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,401 @@
+/* Layout */
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8fafc;
+}
+
+.mainContent {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    /* Đảm bảo content không tràn */
+    margin: 0 auto;
+}
+
+/* Back Button */
+.backButtonWrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #374151;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+}
+
+.backButton:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    color: #111827;
+}
+
+.backButton svg {
+    font-size: 1rem;
+}
+
+.dashboard {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    min-height: 500px;
+}
+
+.title {
+    font-size: 2rem;
+    color: #1a202c;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #64748b;
+    margin-top: 4rem;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 2rem;
+    padding-bottom: 2px;
+    overflow-x: auto;
+    /* Cho phép scroll ngang trên mobile */
+}
+
+.tab {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tab:hover {
+    color: #f58634;
+}
+
+.tab.active {
+    color: #f58634;
+    border-bottom-color: #f58634;
+}
+
+/* Stats Grid */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.statCard {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.2s;
+}
+
+.statCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.statIcon {
+    padding: 1rem;
+    border-radius: 12px;
+    background: #f1f5f9;
+    color: #64748b;
+    font-size: 1.5rem;
+}
+
+.statIconSuccess {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.statIconWarning {
+    background: #fef9c3;
+    color: #ca8a04;
+}
+
+.statIconInfo {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.statIconPrimary {
+    background: #e0e7ff;
+    color: #4f46e5;
+}
+
+.statIconDanger {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.statContent h3 {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+    margin-bottom: 0.5rem;
+}
+
+.statValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+/* Lists */
+.pendingList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.pendingCard {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.menuItemImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: #f3f4f6;
+}
+
+.menuItemImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.noImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #9ca3af;
+}
+
+.pendingInfo {
+    flex: 1;
+}
+
+.pendingInfo h3 {
+    margin: 0 0 0.5rem 0;
+    color: #1e293b;
+}
+
+.pendingAddress,
+.pendingCategory,
+.pendingOwner,
+.pendingDate,
+.menuItemPrice {
+    color: #64748b;
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+.menuItemPrice {
+    font-weight: 600;
+    color: #f58634;
+}
+
+.popularTag {
+    background-color: #fff7ed;
+    color: #ea580c;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+.pendingActions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.approveButton,
+.rejectButton,
+.editButton,
+.saveButton,
+.cancelButton {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.2s;
+}
+
+.approveButton:hover,
+.rejectButton:hover,
+.editButton:hover,
+.saveButton:hover,
+.cancelButton:hover {
+    opacity: 0.8;
+}
+
+.approveButton {
+    background: #22c55e;
+    color: white;
+}
+
+.rejectButton {
+    background: #ef4444;
+    color: white;
+}
+
+.editButton {
+    background: #3b82f6;
+    color: white;
+}
+
+.saveButton {
+    background: #22c55e;
+    color: white;
+}
+
+.cancelButton {
+    background: #64748b;
+    color: white;
+}
+
+.rejectForm {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rejectInput {
+    padding: 0.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    min-width: 200px;
+}
+
+.cancelRejectButton {
+    padding: 0.5rem 0.75rem;
+    background: #94a3b8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* User Table */
+.usersTable table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.usersTable th,
+.usersTable td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.usersTable th {
+    background: #f8fafc;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.roleBadge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.roleadmin {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.roleowner {
+    background: #e0e7ff;
+    color: #4f46e5;
+}
+
+.roleuser {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.roleSelect {
+    padding: 0.25rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+}
+
+.editActions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.emptyState {
+    text-align: center;
+    padding: 3rem;
+    color: #94a3b8;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 2px dashed #e2e8f0;
+}
+
+/* Responsive for Back Button */
+@media (max-width: 768px) {
+    .backButton {
+        margin-bottom: 0.75rem;
+        padding: 0.4rem 0.75rem;
+        font-size: 0.85rem;
+    }
+}

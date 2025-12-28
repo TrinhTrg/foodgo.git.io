@@ -1,0 +1,92 @@
+.mapWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.detailPopupWrapper {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 999;
+  pointer-events: none;
+  max-height: calc(100vh - 140px); /* Tránh đè lên header (70px) và footer (70px) */
+}
+
+.detailPopupWrapper > * {
+  pointer-events: auto;
+}
+
+/* Mobile: Popup hiển thị từ dưới lên (bottom sheet) */
+@media (max-width: 768px) {
+  .detailPopupWrapper {
+    position: fixed;
+    top: 70px; /* Bắt đầu từ dưới navbar */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999; /* Thấp hơn navbar (1000) nhưng vẫn đủ để hiển thị */
+    pointer-events: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+    padding-bottom: 0; /* Có thể thêm padding-bottom nếu có footer */
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .detailPopupWrapper > * {
+    pointer-events: auto;
+    max-height: calc(100vh - 70px); /* Tránh đè lên navbar */
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Custom style cho tooltip của restaurant markers */
+.mapWrapper :global(.restaurant-tooltip) {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mapWrapper :global(.restaurant-tooltip .leaflet-tooltip-arrow) {
+  border-top-color: rgba(0, 0, 0, 0.85);
+}
+
+/* Điều chỉnh z-index của Leaflet zoom controls để không ghi đè lên modal */
+.mapWrapper :global(.leaflet-control-zoom) {
+  z-index: 400 !important;
+}
+
+.mapWrapper :global(.leaflet-control) {
+  z-index: 400 !important;
+}
+
+/* Đảm bảo các controls khác của Leaflet cũng có z-index thấp */
+.mapWrapper :global(.leaflet-top),
+.mapWrapper :global(.leaflet-bottom),
+.mapWrapper :global(.leaflet-left),
+.mapWrapper :global(.leaflet-right) {
+  z-index: 400 !important;
+}

@@ -1,0 +1,55 @@
+{
+  "name": "backend-project",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "make-admin": "node ./scripts/make-admin.js",
+    "test": "jest --setupFilesAfterEnv=./tests/setup.js",
+    "test:watch": "jest --watch --setupFilesAfterEnv=./tests/setup.js",
+    "test:coverage": "jest --coverage --setupFilesAfterEnv=./tests/setup.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^2.2.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^16.6.1",
+    "ejs": "^3.1.10",
+    "express": "~4.16.1",
+    "firebase-admin": "^12.7.0",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "~1.9.1",
+    "multer": "^2.0.2",
+    "mysql2": "^3.15.3",
+    "nodemailer": "^6.9.8",
+    "pug": "2.0.0-beta11",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.11",
+    "sequelize-cli": "^6.6.3",
+    "supertest": "^7.1.4"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "controllers/**/*.js",
+      "models/**/*.js",
+      "services/**/*.js",
+      "!**/node_modules/**",
+      "!**/migrations/**",
+      "!**/seeders/**"
+    ],
+    "coverageDirectory": "coverage",
+    "verbose": true
+  }
+}
