@@ -7,39 +7,36 @@
 ## 📸 Demo
 
 ### 🎥 Video Demo
-```
-[https://drive.google.com/drive/folders/1HOhqYN4A0BQ5NCv2hGPQVnX11f_WZu1A?usp=sharing]
-```
+[
+https://drive.google.com/drive/folders/1HOhqYN4A0BQ5NCv2hGPQVnX11f_WZu1A?usp=sharing
+]
+
 
 ### 📷 Screenshots
 
 #### Trang Chủ
-```
 [<img width="1900" height="864" alt="image" src="https://github.com/user-attachments/assets/c055f2ba-ffb1-4482-8b53-8e5f18de173c" />]
-```
 
 #### Trang Khám Phá
-```
+
 [<img width="1907" height="871" alt="image" src="https://github.com/user-attachments/assets/4c0c4c5e-11af-463b-97a3-bae782239a66" />
 ]
-```
 
 #### Bản Đồ Tương Tác (leaflet & markers)
-```
+
 [<img width="1344" height="755" alt="image" src="https://github.com/user-attachments/assets/578e0b89-9dd4-4745-ac54-30210e83bf43" />]
-```
 
 #### Chi Tiết Nhà Hàng
-```
+
 [<img width="1906" height="866" alt="image" src="https://github.com/user-attachments/assets/d5cd5b96-f165-4a1d-b1e3-a45e81bd8bee" />]
-```
+
 
 #### Đánh Giá & Review
-```
+
 [<img width="492" height="733" alt="image" src="https://github.com/user-attachments/assets/6cee26cc-be0a-4204-833b-131e91a5c185" />]
-```
+
 [<img width="1907" height="876" alt="image" src="https://github.com/user-attachments/assets/9c06cfb1-aa5d-4877-bf68-c4d17dc8a1ff" />]
----
+
 
 ## 📋 Tổng Quan Dự Án
 
@@ -294,3 +291,4 @@ Sau khi chạy seeder, có thể đăng nhập với tài khoản demo:
 Dự án này được phát triển cho mục đích học tập và nghiên cứu môn Advanced Web Design.
 
 ---
+
