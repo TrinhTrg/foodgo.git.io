@@ -6,5 +6,5 @@ config/config.json
 .DS_Store
 dist
 TESTING.md
-uploads
-geojson
+public/uploads
+public/geojson
