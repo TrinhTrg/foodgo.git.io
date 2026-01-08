@@ -176,10 +176,6 @@ npx sequelize-cli migration:generate --name migration-name
 # Tạo model và migration
 npx sequelize-cli model:generate --name ModelName --attributes field1:string,field2:integer
 
-# Ví dụ:
-npx sequelize-cli model:generate --name Coupon --attributes code:string,discount:integer,expires_at:date
-```
-
 ### Seeders (Dữ liệu mẫu)
 
 ```bash
@@ -196,9 +192,9 @@ npx sequelize-cli db:seed:undo:all
 npx sequelize-cli seed:generate --name demo-data
 ```
 
-## 🚀 Chạy ứng dụng
+## Chạy ứng dụng
 
-### Development Mode
+### Development Mode (khởi tạo db và tables khi chạy)
 
 ```bash
 # Sử dụng nodemon (auto-restart khi có thay đổi)
@@ -226,7 +222,7 @@ npm start
 }
 ```
 
-## 🔌 API Endpoints
+## API Endpoints
 
 ### Authentication (`/api/auth`)
 
@@ -298,7 +294,7 @@ npm start
 
 - `GET /api/health` - Kiểm tra server status
 
-## 🔐 Authentication
+## Authentication
 
 ### JWT Authentication
 
@@ -313,13 +309,13 @@ Hỗ trợ đăng nhập qua:
 - Google
 - Facebook (chưa hoạt động)
 
-## 📝 Logging
+##  Logging
 
 - Sử dụng `morgan` middleware cho HTTP request logging
 - Sequelize logging được bật trong development mode
 - Console logs cho database initialization
 
-## ⚙️ Configuration Files
+## Configuration Files
 
 ### `config/database.js`
 - Cấu hình database chính
@@ -334,7 +330,7 @@ Hỗ trợ đăng nhập qua:
 - Biến môi trường
 - **KHÔNG commit file này lên Git**
 
-## 🐛 Debugging
+## Debugging
 
 ### Kiểm tra kết nối database
 

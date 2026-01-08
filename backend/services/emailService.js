@@ -1,29 +1,30 @@
+require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 // Tạo transporter cho Gmail
 // Sử dụng CÙNG LOGIC như contactController để đảm bảo tương thích
 const createTransporter = () => {
-    // Sử dụng chính xác cùng logic như contactController
-    return nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.ADMIN_EMAIL || 'truongtrinhttt147@gmail.com',
-            pass: process.env.ADMIN_PASSWORD ,
-        },
-    });
+  // Sử dụng chính xác cùng logic như contactController
+  return nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.ADMIN_EMAIL || 'truongtrinhttt147@gmail.com',
+      pass: process.env.ADMIN_PASSWORD || process.env.EMAIL_PASSWORD,
+    },
+  });
 };
 
 // Gửi email thông báo phong Owner
 const sendOwnerPromotionEmail = async (userEmail, userName) => {
-    try {
-        const transporter = createTransporter();
+  try {
+    const transporter = createTransporter();
 
-        const emailUser = process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'truongtrinhttt147@gmail.com';
-        const mailOptions = {
-            from: `"FoodGo Admin" <${emailUser}>`,
-            to: userEmail,
-            subject: '🎉 Chúc mừng! Bạn đã được phong làm Owner trên FoodGo',
-            html: `
+    const emailUser = process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'truongtrinhttt147@gmail.com';
+    const mailOptions = {
+      from: `"FoodGo Admin" <${emailUser}>`,
+      to: userEmail,
+      subject: '🎉 Chúc mừng! Bạn đã được phong làm Owner trên FoodGo',
+      html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="background: linear-gradient(135deg, #ff6b35, #f7c331); padding: 30px; border-radius: 10px 10px 0 0; text-align: center;">
             <h1 style="color: white; margin: 0;">🎉 Chúc mừng ${userName}!</h1>
@@ -68,34 +69,34 @@ const sendOwnerPromotionEmail = async (userEmail, userName) => {
           </div>
         </div>
       `
-        };
+    };
 
-        const result = await transporter.sendMail(mailOptions);
-        console.log('📧 Email sent successfully to:', userEmail);
-        return { success: true, messageId: result.messageId };
-    } catch (error) {
-        console.error('❌ Error sending email:', error);
-        return { success: false, error: error.message };
-    }
+    const result = await transporter.sendMail(mailOptions);
+    console.log('📧 Email sent successfully to:', userEmail);
+    return { success: true, messageId: result.messageId };
+  } catch (error) {
+    console.error('❌ Error sending email:', error);
+    return { success: false, error: error.message };
+  }
 };
 
 // Gửi email thông báo từ chối Owner (nếu cần)
 const sendRoleDemotionEmail = async (userEmail, userName, newRole) => {
-    try {
-        const transporter = createTransporter();
+  try {
+    const transporter = createTransporter();
 
-        const roleLabels = {
-            user: 'Người dùng',
-            owner: 'Owner',
-            admin: 'Admin'
-        };
+    const roleLabels = {
+      user: 'Người dùng',
+      owner: 'Owner',
+      admin: 'Admin'
+    };
 
-        const emailUser = process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'truongtrinhttt147@gmail.com';
-        const mailOptions = {
-            from: `"FoodGo Admin" <${emailUser}>`,
-            to: userEmail,
-            subject: 'Thông báo thay đổi quyền trên FoodGo',
-            html: `
+    const emailUser = process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'truongtrinhttt147@gmail.com';
+    const mailOptions = {
+      from: `"FoodGo Admin" <${emailUser}>`,
+      to: userEmail,
+      subject: 'Thông báo thay đổi quyền trên FoodGo',
+      html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="background: #333; padding: 30px; border-radius: 10px 10px 0 0; text-align: center;">
             <h1 style="color: white; margin: 0;">Thông báo từ FoodGo</h1>
@@ -121,41 +122,41 @@ const sendRoleDemotionEmail = async (userEmail, userName, newRole) => {
           </div>
         </div>
       `
-        };
+    };
 
-        const result = await transporter.sendMail(mailOptions);
-        console.log('📧 Email sent successfully to:', userEmail);
-        return { success: true, messageId: result.messageId };
-    } catch (error) {
-        console.error('❌ Error sending email:', error);
-        return { success: false, error: error.message };
-    }
+    const result = await transporter.sendMail(mailOptions);
+    console.log('📧 Email sent successfully to:', userEmail);
+    return { success: true, messageId: result.messageId };
+  } catch (error) {
+    console.error('❌ Error sending email:', error);
+    return { success: false, error: error.message };
+  }
 };
 
 // Gửi email mã xác nhận đặt lại mật khẩu (6 chữ số)
 const sendPasswordResetCodeEmail = async (userEmail, userName, resetCode) => {
-    try {
-        // Validate input
-        if (!userEmail || !userName || !resetCode) {
-            throw new Error('Missing required parameters: userEmail, userName, or resetCode');
-        }
+  try {
+    // Validate input
+    if (!userEmail || !userName || !resetCode) {
+      throw new Error('Missing required parameters: userEmail, userName, or resetCode');
+    }
 
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(userEmail)) {
-            throw new Error('Invalid email format');
-        }
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(userEmail)) {
+      throw new Error('Invalid email format');
+    }
 
-        console.log('📧 Attempting to send password reset code email to:', userEmail);
-        
-        const transporter = createTransporter();
+    console.log('📧 Attempting to send password reset code email to:', userEmail);
 
-        const emailUser = process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'truongtrinhttt147@gmail.com';
-        const mailOptions = {
-            from: `"FoodGo" <${emailUser}>`,
-            to: userEmail,
-            subject: '🔐 Mã xác nhận đặt lại mật khẩu - FoodGo',
-            html: `
+    const transporter = createTransporter();
+
+    const emailUser = process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'truongtrinhttt147@gmail.com';
+    const mailOptions = {
+      from: `"FoodGo" <${emailUser}>`,
+      to: userEmail,
+      subject: '🔐 Mã xác nhận đặt lại mật khẩu - FoodGo',
+      html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="background: linear-gradient(135deg, #ff6b35, #f7c331); padding: 30px; border-radius: 10px 10px 0 0; text-align: center;">
             <h1 style="color: white; margin: 0;">🔐 Đặt lại mật khẩu</h1>
@@ -194,32 +195,32 @@ const sendPasswordResetCodeEmail = async (userEmail, userName, resetCode) => {
           </div>
         </div>
       `
-        };
+    };
 
-        // Verify connection trước khi gửi
-        await transporter.verify();
-        console.log('SMTP connection verified');
+    // Verify connection trước khi gửi
+    await transporter.verify();
+    console.log('SMTP connection verified');
 
-        const result = await transporter.sendMail(mailOptions);
-        console.log('📧 Password reset code email sent successfully to:', userEmail);
-        console.log('📧 Message ID:', result.messageId);
-        console.log('📧 Reset code:', resetCode);
-        return { success: true, messageId: result.messageId };
-    } catch (error) {
-        console.error('Error sending password reset code email:', error);
-        console.error('Error details:', {
-            message: error.message,
-            code: error.code,
-            command: error.command,
-            response: error.response,
-            responseCode: error.responseCode
-        });
-        return { success: false, error: error.message };
-    }
+    const result = await transporter.sendMail(mailOptions);
+    console.log('📧 Password reset code email sent successfully to:', userEmail);
+    console.log('📧 Message ID:', result.messageId);
+    console.log('📧 Reset code:', resetCode);
+    return { success: true, messageId: result.messageId };
+  } catch (error) {
+    console.error('Error sending password reset code email:', error);
+    console.error('Error details:', {
+      message: error.message,
+      code: error.code,
+      command: error.command,
+      response: error.response,
+      responseCode: error.responseCode
+    });
+    return { success: false, error: error.message };
+  }
 };
 
 module.exports = {
-    sendOwnerPromotionEmail,
-    sendRoleDemotionEmail,
-    sendPasswordResetCodeEmail
+  sendOwnerPromotionEmail,
+  sendRoleDemotionEmail,
+  sendPasswordResetCodeEmail
 };

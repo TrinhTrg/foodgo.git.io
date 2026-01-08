@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaTimes, FaUpload, FaTrash, FaPlus, FaSave } from 'react-icons/fa';
+import { FaTimes, FaUpload, FaTrash, FaPlus, FaSave, FaFire, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { menuItemAPI } from '../../services/api';
 import styles from './MenuItemModal.module.css';
 
-const MenuItemModal = ({ isOpen, onClose, item, restaurantId, onSuccess }) => {
+const MenuItemModal = ({ isOpen, onClose, item, restaurantId, onSuccess, isViewOnly, onPrev, onNext }) => {
     const [formData, setFormData] = useState({
         name: '',
         price: '',
@@ -120,6 +120,72 @@ const MenuItemModal = ({ isOpen, onClose, item, restaurantId, onSuccess }) => {
             setLoading(false);
         }
     };
+
+    if (item && isViewOnly) {
+        const getImageUrl = (url) => {
+            if (!url) return '';
+            if (url.startsWith('http') || url.startsWith('blob:')) return url;
+            return `http://localhost:3000${url}`;
+        };
+
+        const displayImage = item.imageUrl ? getImageUrl(item.imageUrl) : null;
+        const displayPrice = item.priceFormatted || new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.price);
+
+        return (
+            <div className={styles.modalOverlay} onClick={onClose}>
+                <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+                    <div className={styles.viewContainer}>
+                        <div className={styles.viewImageWrapper}>
+                            {displayImage ? (
+                                <img src={displayImage} alt={item.name} />
+                            ) : (
+                                <div className={styles.imagePlaceholder}>
+                                    <div className={styles.uploadHint}>
+                                        <span>No Image</span>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Navigation Buttons */}
+                            {onPrev && (
+                                <button className={`${styles.navBtn} ${styles.prevBtn}`} onClick={onPrev}>
+                                    <FaChevronLeft />
+                                </button>
+                            )}
+                            {onNext && (
+                                <button className={`${styles.navBtn} ${styles.nextBtn}`} onClick={onNext}>
+                                    <FaChevronRight />
+                                </button>
+                            )}
+
+                            {item.isPopular && (
+                                <span className={styles.viewPopularBadge}>
+                                    <FaFire /> Popular
+                                </span>
+                            )}
+                        </div>
+                        <div className={styles.viewInfo}>
+                            <h3 className={styles.viewName}>{item.name}</h3>
+                            <div className={styles.viewPrice}>{displayPrice}</div>
+
+                            {item.categoryLabel && (
+                                <div>
+                                    <span className={styles.viewCategory}>{item.categoryLabel}</span>
+                                </div>
+                            )}
+
+                            {/* Actions */}
+                            <div className={styles.viewActions}>
+                                <button className={styles.closeViewBtn} onClick={onClose}>
+                                    Đóng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.modalOverlay} onClick={onClose}>

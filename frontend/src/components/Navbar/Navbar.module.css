@@ -75,6 +75,14 @@
   padding: 0.5rem;
   /* Làm nó tròn */
   border-radius: 50%;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); /* Hiệu ứng bouncy nhẹ */
+}
+
+/* Class active khi dropdown mở - xoay 135 độ thành dấu X */
+.rotateActive {
+  transform: rotate(135deg);
+  background-color: #c95e34; /* Đổi màu nền nhẹ khi active để rõ trạng thái đóng */
+  color: #ffffff; /* Đổi màu icon */
 }
 
 .iconButtonActive {

@@ -79,7 +79,7 @@ const distanceFromPoint = (baseLat, baseLng, restaurant) => {
   }
   return haversineDistanceKm(baseLat, baseLng, lat, lng);
 };
-  
+
 const DiscoverPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -97,7 +97,7 @@ const DiscoverPage = () => {
   // viewMode: 'overview' | 'nearby' | 'topRated' | 'all'
   const [viewMode, setViewMode] = useState('overview');
   const [advancedFilters, setAdvancedFilters] = useState([]);
-  const [maxPrice, setMaxPrice] = useState(10000000);
+  const [maxPrice, setMaxPrice] = useState('');
   const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
   const filterDropdownRef = useRef(null);
 
@@ -383,36 +383,64 @@ const DiscoverPage = () => {
     const hasDistance = advancedFilters.includes('distance');
     const hasPrice = advancedFilters.includes('price');
 
-    // Nếu chọn lọc theo giá, sắp xếp theo mức giá (cao -> thấp)
+    // 1. Lọc theo giá (nếu có chọn Giá tối đa)
     if (hasPrice) {
-      list = list.sort(
-        (a, b) => priceLabelToScore(b.price) - priceLabelToScore(a.price)
-      );
-    }
-
-    // Nếu chọn lọc theo khoảng cách, ưu tiên gần hơn
-    if (hasDistance) {
-      list = list.sort(
-        (a, b) => (a.distanceKm ?? Number.MAX_VALUE) - (b.distanceKm ?? Number.MAX_VALUE)
-      );
-    } else {
-      // Mặc định: sắp xếp theo khoảng cách gần + nhiều reviews
-      // Ưu tiên gần hơn, nhưng nếu khoảng cách tương đương thì ưu tiên nhiều reviews hơn
-      list = list.sort((a, b) => {
-        const distA = a.distanceKm ?? Number.MAX_VALUE;
-        const distB = b.distanceKm ?? Number.MAX_VALUE;
-        
-        // Nếu khoảng cách chênh lệch < 5km, ưu tiên reviews nhiều hơn
-        if (Math.abs(distA - distB) < 5) {
-          return (b.reviews || 0) - (a.reviews || 0);
-        }
-        // Nếu khoảng cách chênh lệch lớn, ưu tiên gần hơn
-        return distA - distB;
+      list = list.filter(restaurant => {
+        const minPrice = restaurant.minPrice;
+        if (minPrice === null || minPrice === undefined) return true;
+        return maxPrice === '' ? true : minPrice <= maxPrice;
       });
     }
 
+    // 2. Sắp xếp (Sort) kết hợp
+    list = list.sort((a, b) => {
+      // Trường hợp A: Chọn cả hai (Ưu tiên Gần bạn là chính, nhưng vẫn giữ quán có giá lên trước)
+      if (hasDistance && hasPrice) {
+        const hasPriceA = a.minPrice !== null && a.minPrice !== undefined;
+        const hasPriceB = b.minPrice !== null && b.minPrice !== undefined;
+
+        if (hasPriceA && !hasPriceB) return -1;
+        if (!hasPriceA && hasPriceB) return 1;
+
+        const distA = a.distanceKm ?? Number.MAX_VALUE;
+        const distB = b.distanceKm ?? Number.MAX_VALUE;
+        return distA - distB;
+      }
+
+      // Trường hợp B: Chỉ chọn Gần bạn
+      if (hasDistance) {
+        const distA = a.distanceKm ?? Number.MAX_VALUE;
+        const distB = b.distanceKm ?? Number.MAX_VALUE;
+        return distA - distB;
+      }
+
+      // Trường hợp C: Chỉ chọn Giá tối đa
+      if (hasPrice) {
+        const priceA = a.minPrice;
+        const priceB = b.minPrice;
+        if (priceA !== null && priceA !== undefined && priceB !== null && priceB !== undefined) {
+          return priceA - priceB;
+        }
+        if (priceA !== null && priceA !== undefined) return -1;
+        if (priceB !== null && priceB !== undefined) return 1;
+        return 0;
+      }
+
+      // Trường hợp D: Không chọn filter nâng cao nào (Mặc định)
+      if (activeFilter !== 'topRated') {
+        const distA = a.distanceKm ?? Number.MAX_VALUE;
+        const distB = b.distanceKm ?? Number.MAX_VALUE;
+        if (Math.abs(distA - distB) < 5) {
+          return (b.reviews || 0) - (a.reviews || 0);
+        }
+        return distA - distB;
+      }
+
+      return 0;
+    });
+
     return list;
-  }, [filteredNearbyRestaurants, advancedFilters, userPosition]);
+  }, [filteredNearbyRestaurants, advancedFilters, userPosition, activeFilter, maxPrice]);
 
   // Map hiển thị restaurants: nếu có search/category thì hiển thị kết quả search, không thì hiển thị tất cả
   const mapRestaurants = useMemo(() => {
@@ -485,7 +513,7 @@ const DiscoverPage = () => {
     </div>
   );
 
-  const FilterDropdown = () => (
+  const renderFilterDropdown = () => (
     <div className={styles.filterToggleWrapper} ref={filterDropdownRef}>
       <button
         type="button"
@@ -526,21 +554,30 @@ const DiscoverPage = () => {
                   <span className={styles.filterLabel}>{label}</span>
                 </button>
                 {isPrice && (
-                  <div className={styles.filterSliderRow}>
-                    <input
-                      type="range"
-                      min={0}
-                      max={10000000}
-                      step={500000}
-                      value={maxPrice}
-                      onChange={(event) =>
-                        setMaxPrice(Number(event.target.value))
-                      }
-                      className={styles.filterSlider}
-                    />
-                    <span className={styles.filterPriceValue}>
-                      {maxPrice.toLocaleString('vi-VN')} đ
-                    </span>
+                  <div className={styles.filterSliderContainer} style={{ padding: '0 0.5rem 0.5rem 2.2rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                      <input
+                        type="number"
+                        min={0}
+                        max={10000000}
+                        value={maxPrice || ''}
+                        onChange={(e) => {
+                          const val = e.target.value === '' ? '' : Number(e.target.value);
+                          if (val === '' || (val >= 0 && val <= 10000000)) {
+                            setMaxPrice(val);
+                          }
+                        }}
+                        style={{
+                          width: '100%',
+                          padding: '0.4rem',
+                          border: '1px solid #ddd',
+                          borderRadius: '6px',
+                          fontSize: '0.9rem'
+                        }}
+                        placeholder="Nhập giá tối đa..."
+                      />
+                      <span style={{ fontSize: '0.9rem', color: '#555', whiteSpace: 'nowrap' }}>VND</span>
+                    </div>
                   </div>
                 )}
               </div>
@@ -610,7 +647,7 @@ const DiscoverPage = () => {
                       </button>
                     ))}
                   </div>
-                  <FilterDropdown />
+                  {renderFilterDropdown()}
                 </div>
 
                 <div className={styles.restaurantList}>
@@ -677,7 +714,7 @@ const DiscoverPage = () => {
                     </button>
                   ))}
                 </div>
-                <FilterDropdown />
+                {renderFilterDropdown()}
               </div>
 
               <div className={styles.restaurantList}>

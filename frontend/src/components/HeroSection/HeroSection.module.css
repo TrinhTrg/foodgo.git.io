@@ -1,11 +1,15 @@
 /* Container chính của Hero */
 .heroContainer {
-  position: relative; /* Quan trọng: để làm "mỏ neo" cho các ảnh bay */
-  background-color: #FFF7ED; /* Màu nền be */
+  position: relative;
+  /* Quan trọng: để làm "mỏ neo" cho các ảnh bay */
+  background-color: #FFF7ED;
+  /* Màu nền be */
   padding: 5rem 2rem;
   text-align: center;
-  overflow: hidden; /* Ngăn ảnh bay ra khỏi lề */
-  min-height: 80vh; /* Chiếm gần hết màn hình */
+  overflow: hidden;
+  /* Ngăn ảnh bay ra khỏi lề */
+  min-height: 80vh;
+  /* Chiếm gần hết màn hình */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,9 +20,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem; /* Khoảng cách giữa các phần tử con */
+  gap: 1.5rem;
+  /* Khoảng cách giữa các phần tử con */
   max-width: 600px;
-  z-index: 2; /* Nằm trên các ảnh bay */
+  z-index: 2;
+  /* Nằm trên các ảnh bay */
   position: relative;
 }
 
@@ -29,7 +35,8 @@
 }
 
 .content h1 span {
-  color: #F58634; /* Màu cam */
+  color: #F58634;
+  /* Màu cam */
 }
 
 .content p {
@@ -45,7 +52,7 @@
   background-color: white;
   padding: 0.8rem 1.5rem;
   border-radius: 50px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   gap: 1rem;
   width: 100%;
 }
@@ -53,7 +60,8 @@
 .searchBar input {
   border: none;
   outline: none;
-  flex-grow: 1; /* Tự co giãn */
+  flex-grow: 1;
+  /* Tự co giãn */
   font-size: 1rem;
 }
 
@@ -69,19 +77,23 @@
 .ctaButton {
   background-color: #F58634;
   color: white;
-  border: none;
+  border: 2px solid #F58634;
+  /* Thêm border để đồng nhất kích thước */
   border-radius: 50px;
   padding: 1rem 2rem;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: all 0.2s;
+  /* Đổi thành all để transition cả màu */
 }
 
 .ctaButton:hover {
   transform: scale(1.05);
-  color: white;
-  background-color: #e6751e;
+  color: #F58634;
+  /* Chữ màu cam */
+  background-color: transparent;
+  /* Nền trong suốt */
 }
 
 /* Nút phụ - Đăng ký */
@@ -127,7 +139,8 @@
 }
 
 .featureLeft {
-  margin-left: 5rem; /* Đẩy vào trong */
+  margin-left: 5rem;
+  /* Đẩy vào trong */
 }
 
 .featureCenter {
@@ -137,16 +150,20 @@
 }
 
 .featureRight {
-  margin-right: 5rem; /* Đẩy vào trong */
+  margin-right: 5rem;
+  /* Đẩy vào trong */
 }
 
 /* --- Kỹ thuật ảnh "bay" --- */
 .floatingImage {
-  position: absolute; /* Bay tự do */
+  position: absolute;
+  /* Bay tự do */
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  z-index: 1; /* Nằm dưới nội dung */
-  width: 150px; /* Kích thước ví dụ */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  /* Nằm dưới nội dung */
+  width: 150px;
+  /* Kích thước ví dụ */
 }
 
 /* Vị trí cụ thể của từng ảnh */
@@ -155,15 +172,18 @@
   left: 15%;
   width: 180px;
 }
+
 .image2 {
   top: 15%;
   right: 12%;
   width: 200px;
 }
+
 .image3 {
   bottom: 15%;
   left: 20%;
 }
+
 .image4 {
   bottom: 25%;
   right: 18%;
@@ -176,13 +196,15 @@
     padding: 2rem 1rem;
     min-height: auto;
     height: auto;
-    flex-direction: column-reverse; /* Đảo ngược: Ảnh lên trên, chữ xuống dưới */
+    flex-direction: column-reverse;
+    /* Đảo ngược: Ảnh lên trên, chữ xuống dưới */
     position: relative;
   }
 
   /* Xử lý các ảnh bay - chuyển sang static trên mobile */
   .floatingImage {
-    position: static !important; /* QUAN TRỌNG: Bỏ chế độ bay lơ lửng */
+    position: static !important;
+    /* QUAN TRỌNG: Bỏ chế độ bay lơ lửng */
     width: 100% !important;
     max-width: 200px;
     height: auto;

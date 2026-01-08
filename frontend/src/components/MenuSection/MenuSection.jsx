@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { FaChevronLeft, FaChevronRight, FaTimes, FaFire, FaEdit, FaPlus } from 'react-icons/fa';
 import { menuItemAPI } from '../../services/api';
 import MenuItemModal from './MenuItemModal';
@@ -9,7 +9,6 @@ const BACKEND_URL = 'http://localhost:3000';
 const MenuSection = ({ restaurantId, isOwner }) => {
     const [menuItems, setMenuItems] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [currentIndex, setCurrentIndex] = useState(0);
     const [showAll, setShowAll] = useState(false);
     const [zoomedItem, setZoomedItem] = useState(null);
     const [zoomedIndex, setZoomedIndex] = useState(0);
@@ -18,7 +17,7 @@ const MenuSection = ({ restaurantId, isOwner }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingItem, setEditingItem] = useState(null);
 
-    const ITEMS_PER_VIEW = 4;
+    const scrollRef = useRef(null);
 
     // Helper để lấy full URL cho ảnh
     const getImageUrl = (url) => {
@@ -48,14 +47,17 @@ const MenuSection = ({ restaurantId, isOwner }) => {
         loadMenu();
     }, [loadMenu]);
 
-    // Navigation handlers
+    // Navigation handlers - Chuyển sang dùng scroll thay vì slice
     const handlePrev = () => {
-        setCurrentIndex(prev => Math.max(0, prev - 1));
+        if (scrollRef.current) {
+            scrollRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+        }
     };
 
     const handleNext = () => {
-        const maxIndex = Math.max(0, menuItems.length - ITEMS_PER_VIEW);
-        setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
+        if (scrollRef.current) {
+            scrollRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+        }
     };
 
     // Zoom handlers
@@ -127,11 +129,6 @@ const MenuSection = ({ restaurantId, isOwner }) => {
         return null;
     }
 
-    const visibleItems = menuItems;
-
-    const canGoPrev = currentIndex > 0;
-    const canGoNext = currentIndex < menuItems.length - 1;
-
     return (
         <section className={styles.menuSection}>
             <div className={styles.sectionHeader}>
@@ -141,12 +138,11 @@ const MenuSection = ({ restaurantId, isOwner }) => {
 
             {/* Menu Grid/Carousel */}
             <div className={styles.menuContainer}>
-                {!showAll && menuItems.length > ITEMS_PER_VIEW && (
+                {!showAll && menuItems.length > 2 && (
                     <>
                         <button
                             className={`${styles.navButton} ${styles.navPrev}`}
                             onClick={handlePrev}
-                            disabled={!canGoPrev}
                             aria-label="Previous"
                         >
                             <FaChevronLeft />
@@ -154,7 +150,6 @@ const MenuSection = ({ restaurantId, isOwner }) => {
                         <button
                             className={`${styles.navButton} ${styles.navNext}`}
                             onClick={handleNext}
-                            disabled={!canGoNext}
                             aria-label="Next"
                         >
                             <FaChevronRight />
@@ -162,12 +157,15 @@ const MenuSection = ({ restaurantId, isOwner }) => {
                     </>
                 )}
 
-                <div className={`${styles.menuGrid} ${showAll ? styles.menuGridExpanded : ''}`}>
-                    {visibleItems.map((item, idx) => (
+                <div
+                    ref={scrollRef}
+                    className={`${styles.menuGrid} ${showAll ? styles.menuGridExpanded : ''}`}
+                >
+                    {menuItems.map((item, idx) => (
                         <div
                             key={item.id}
                             className={styles.menuCard}
-                            onClick={() => openZoom(item, showAll ? idx : currentIndex + idx)}
+                            onClick={() => openZoom(item, idx)}
                         >
                             <div className={styles.menuImageWrapper}>
                                 {item.imageUrl ? (
@@ -230,12 +228,12 @@ const MenuSection = ({ restaurantId, isOwner }) => {
             </div>
 
             {/* See More Button */}
-            {menuItems.length > ITEMS_PER_VIEW && (
+            {menuItems.length > 3 && (
                 <button
                     className={styles.seeMoreButton}
                     onClick={() => setShowAll(!showAll)}
                 >
-                    {showAll ? 'Thu gọn' : `Xem thêm (${menuItems.length - ITEMS_PER_VIEW} món)`}
+                    {showAll ? 'Thu gọn' : 'Xem thêm'}
                 </button>
             )}
 
@@ -249,57 +247,18 @@ const MenuSection = ({ restaurantId, isOwner }) => {
                 </button>
             )}
 
-            {/* Zoom Modal */}
-            {zoomedItem && (
-                <div className={styles.zoomOverlay} onClick={closeZoom}>
-                    <div className={styles.zoomContent} onClick={e => e.stopPropagation()}>
-                        <button className={styles.zoomClose} onClick={closeZoom}>
-                            <FaTimes />
-                        </button>
+            {/* Detail View Modal (User) */}
+            <MenuItemModal
+                isOpen={!!zoomedItem}
+                onClose={closeZoom}
+                item={zoomedItem}
+                restaurantId={restaurantId}
+                isViewOnly={true}
+                onPrev={zoomPrev}
+                onNext={zoomNext}
+            />
 
-                        <div className={styles.zoomImageWrapper}>
-                            {zoomedItem.imageUrl ? (
-                                <img
-                                    src={getImageUrl(zoomedItem.imageUrl)}
-                                    alt={zoomedItem.name}
-                                />
-                            ) : (
-                                <div className={styles.zoomNoImage}>🍽️</div>
-                            )}
-
-                            {/* Navigation */}
-                            {menuItems.length > 1 && (
-                                <>
-                                    <button className={styles.zoomNav} onClick={zoomPrev}>
-                                        <FaChevronLeft />
-                                    </button>
-                                    <button className={`${styles.zoomNav} ${styles.zoomNavRight}`} onClick={zoomNext}>
-                                        <FaChevronRight />
-                                    </button>
-                                </>
-                            )}
-                        </div>
-
-                        <div className={styles.zoomInfo}>
-                            <h3>{zoomedItem.name}</h3>
-                            <div className={styles.zoomMeta}>
-                                <span className={styles.zoomPrice}>{zoomedItem.priceFormatted}</span>
-                                <span className={styles.zoomCategory}>{zoomedItem.categoryLabel}</span>
-                                {zoomedItem.isPopular && (
-                                    <span className={styles.zoomPopular}>
-                                        <FaFire /> Popular
-                                    </span>
-                                )}
-                            </div>
-                            <span className={styles.zoomCounter}>
-                                {zoomedIndex + 1} / {menuItems.length}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* Add/Edit Modal */}
+            {/* Add/Edit Modal (Owner) */}
             <MenuItemModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}

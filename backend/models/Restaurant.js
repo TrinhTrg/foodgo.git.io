@@ -22,6 +22,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'owner_id',
         as: 'owner'
       });
+
+      // Association với MenuItem
+      Restaurant.hasMany(models.MenuItem, {
+        foreignKey: 'restaurant_id',
+        as: 'MenuItems'
+      });
     }
   }
   Restaurant.init({

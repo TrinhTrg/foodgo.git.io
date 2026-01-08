@@ -1,4 +1,4 @@
-const { Restaurant, Category } = require('../models');
+const { Restaurant, Category, MenuItem } = require('../models');
 const { Op } = require('sequelize');
 
 const searchAutocomplete = async (req, res) => {
@@ -129,7 +129,7 @@ const searchRestaurants = async (req, res) => {
           name: { [Op.like]: categoryNameTrimmed }
         }
       });
-      
+
       // Nếu không tìm thấy exact match, thử partial match
       if (!category) {
         category = await Category.findOne({
@@ -138,7 +138,7 @@ const searchRestaurants = async (req, res) => {
           }
         });
       }
-      
+
       if (category) {
         categoryIdToFilter = category.id;
       }
@@ -158,6 +158,12 @@ const searchRestaurants = async (req, res) => {
         as: 'categories',
         attributes: ['id', 'name'],
         through: { attributes: [] },
+        required: false
+      },
+      {
+        model: MenuItem,
+        as: 'MenuItems',
+        attributes: ['id', 'name', 'price', 'category', 'image_url', 'status'],
         required: false
       }
     ];
@@ -198,14 +204,26 @@ const searchRestaurants = async (req, res) => {
     // Format response giống getAllRestaurants
     const formattedRestaurants = restaurants.rows.map((restaurant) => {
       const restaurantData = restaurant.toJSON();
-      
+
       // Lấy categories từ many-to-many hoặc fallback về category cũ
       const categoriesList = restaurantData.categories && restaurantData.categories.length > 0
         ? restaurantData.categories
         : (restaurantData.category ? [restaurantData.category] : []);
-      
+
       const categoryNames = categoriesList.map(cat => cat.name);
-      
+
+      // Tính giá từ menu items
+      const menuItems = restaurantData.MenuItems || [];
+      let minPrice = null;
+      let avgPrice = null;
+      let maxPrice = null;
+      if (menuItems.length > 0) {
+        const prices = menuItems.map(item => parseFloat(item.price));
+        minPrice = Math.min(...prices);
+        maxPrice = Math.max(...prices);
+        avgPrice = prices.reduce((a, b) => a + b, 0) / prices.length;
+      }
+
       return {
         id: restaurantData.id,
         name: restaurantData.name,
@@ -215,13 +233,23 @@ const searchRestaurants = async (req, res) => {
         reviews: restaurantData.review_count,
         address: restaurantData.address,
         status: restaurantData.is_open ? 'Đang mở cửa' : 'Đã đóng cửa',
-        statusRaw: restaurantData.status, // Giữ giá trị gốc 'approved'/'pending' để frontend check
+        statusRaw: restaurantData.status,
         isOpen: restaurantData.is_open,
         tags: categoryNames,
         category: categoryNames[0] || 'Khác',
-        categories: categoryNames, // Thêm field mới
+        categories: categoryNames,
         description: restaurantData.description || 'Thông tin đang được cập nhật.',
         price: '$$',
+        minPrice,
+        avgPrice,
+        maxPrice,
+        menuItems: menuItems.map(item => ({
+          id: item.id,
+          name: item.name,
+          price: parseFloat(item.price),
+          category: item.category,
+          image: item.image_url
+        })),
         latitude: parseFloat(restaurantData.latitude),
         longitude: parseFloat(restaurantData.longitude),
         owner_id: restaurantData.owner_id,

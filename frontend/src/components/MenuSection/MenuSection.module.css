@@ -60,6 +60,21 @@
     /* Ẩn cho Chrome/Safari */
 }
 
+.menuGridExpanded {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    overflow-x: visible !important;
+    padding: 10px 0 !important;
+    flex-wrap: wrap !important;
+}
+
+.menuGridExpanded .menuCard {
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: 0 0 auto !important;
+}
+
 
 
 /* Card Style */
@@ -242,20 +257,22 @@
 /* Navigation Buttons */
 .navButton {
     position: absolute;
-    top: 50%;
+    top: 40%;
+    /* Chỉnh cao lên một chút để căn giữa phần ảnh */
     transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: white;
     border: 1px solid #e5e7eb;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 10;
-    color: #666;
+    z-index: 50;
+    /* Đảm bảo nổi lên trên các thẻ món ăn */
+    color: #F58634;
     transition: all 0.2s;
 }
 
@@ -263,20 +280,22 @@
     background-color: #F58634;
     color: white;
     border-color: #F58634;
+    transform: translateY(-50%) scale(1.1);
 }
 
 .navButton:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    background-color: #f3f4f6;
+    opacity: 0;
+    /* Ẩn hẳn khi không thể bấm để đỡ rối mắt */
+    pointer-events: none;
 }
 
 .navPrev {
-    left: -10px;
+    left: 2px;
+    /* Đẩy vào trong một chút để không bị sát mép popup */
 }
 
 .navNext {
-    right: -10px;
+    right: 2px;
 }
 
 /* See More Button */
@@ -501,7 +520,7 @@
 
     /* Loại bỏ việc ép số cột cố định để tránh lỗi trong popup nhỏ trên màn hình lớn */
     .menuGrid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        /* Chống trùng lặp grid ở carousel */
     }
 
     .zoomInfo {

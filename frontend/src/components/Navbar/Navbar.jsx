@@ -36,7 +36,7 @@ const Navbar = () => {
   const [categories, setCategories] = useState([]); // Categories để hiển thị khi chưa có search
   const [showHistory, setShowHistory] = useState(false); // Hiển thị lịch sử khi click vào search bar
   const location = useLocation();
-  
+
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
 
   const dropdownRef = useRef(null);
@@ -68,18 +68,16 @@ const Navbar = () => {
       ) {
         setIsUserMenuOpen(false);
       }
-      // Close search suggestions when clicking outside
       if (
         searchRef.current &&
         !searchRef.current.contains(event.target)
       ) {
         setShowSuggestions(false);
-        // Chỉ đóng search expanded trên mobile (≤480px)
+        setShowHistory(false);
         if (window.innerWidth <= 480) {
           setIsSearchExpanded(false);
         }
       }
-      // Close mobile menu when clicking outside
       if (
         mobileMenuRef.current &&
         !mobileMenuRef.current.contains(event.target) &&
@@ -89,14 +87,14 @@ const Navbar = () => {
       }
     };
 
-    if (isDropdownOpen || isUserMenuOpen || showSuggestions) {
+    if (isDropdownOpen || isUserMenuOpen || showSuggestions || showHistory) {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isDropdownOpen, isUserMenuOpen, showSuggestions, isMobileMenuOpen]);
+  }, [isDropdownOpen, isUserMenuOpen, showSuggestions, showHistory, isMobileMenuOpen]);
 
   // Tạo hoặc lấy session_id từ sessionStorage (cho anonymous users)
   const getOrCreateSessionId = () => {
@@ -129,11 +127,11 @@ const Navbar = () => {
         if (token) {
           headers['Authorization'] = `Bearer ${token}`;
         }
-        
+
         const response = await fetch(`${API_BASE_URL}/restaurants?viewed_only=true&session_id=${sessionId}`, {
           headers
         });
-        
+
         if (response.ok) {
           const data = await response.json();
           const restaurants = Array.isArray(data.data) ? data.data : [];
@@ -291,7 +289,7 @@ const Navbar = () => {
   // Lưu search vào history
   const saveToHistory = (query) => {
     if (!query.trim()) return;
-    
+
     const trimmedQuery = query.trim();
     setSearchHistory((prev) => {
       // Loại bỏ duplicate và giữ tối đa 10 items
@@ -370,8 +368,8 @@ const Navbar = () => {
         </div>
 
         {/* Thanh tìm kiếm */}
-        <div 
-          ref={searchRef} 
+        <div
+          ref={searchRef}
           className={`${styles.searchBarContainer} ${isSearchExpanded ? styles.searchExpanded : ''}`}
         >
           <form className={styles.searchBar} onSubmit={handleSearchSubmit}>
@@ -650,7 +648,7 @@ const Navbar = () => {
         <div className={styles.dropdownContainer}>
           <button
             ref={buttonRef}
-            className={styles.iconButtonOrange}
+            className={`${styles.iconButtonOrange} ${isDropdownOpen ? styles.rotateActive : ''}`}
             onClick={toggleDropdown}
           >
             <FaPlus />

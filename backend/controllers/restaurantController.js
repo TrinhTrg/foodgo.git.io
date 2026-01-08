@@ -1,4 +1,4 @@
-const { Restaurant, Category, RestaurantView } = require('../models');
+const { Restaurant, Category, RestaurantView, MenuItem } = require('../models');
 const { Op } = require('sequelize');
 
 const getAllRestaurants = async (req, res) => {
@@ -54,19 +54,25 @@ const getAllRestaurants = async (req, res) => {
 
     // include options là các model cần join 
     const includeOptions = [
-        {
-          model: Category,
-          as: 'category',
+      {
+        model: Category,
+        as: 'category',
         attributes: ['id', 'name'],
         required: false
-        },
-        {
-          model: Category,
-          as: 'categories',
-          attributes: ['id', 'name'],
+      },
+      {
+        model: Category,
+        as: 'categories',
+        attributes: ['id', 'name'],
         through: { attributes: [] },
         required: false
-        }
+      },
+      {
+        model: MenuItem,
+        as: 'MenuItems',
+        attributes: ['id', 'name', 'price', 'category', 'image_url', 'status'],
+        required: false // LEFT JOIN để không loại bỏ restaurant không có menu
+      }
     ];
 
     // NẾU CÓ CATEGORY_ID THÌ FILTER THEO CATEGORY_ID
@@ -112,6 +118,18 @@ const getAllRestaurants = async (req, res) => {
 
       const categoryNames = categoriesList.map(cat => cat.name);
 
+      // Tính giá từ menu items (nếu có)
+      const menuItems = restaurantData.MenuItems || [];
+      let minPrice = null;
+      let avgPrice = null;
+      let maxPrice = null;
+      if (menuItems.length > 0) {
+        const prices = menuItems.map(item => parseFloat(item.price));
+        minPrice = Math.min(...prices);
+        maxPrice = Math.max(...prices);
+        avgPrice = prices.reduce((a, b) => a + b, 0) / prices.length;
+      }
+
       return {
         id: restaurantData.id,
         name: restaurantData.name,
@@ -128,7 +146,17 @@ const getAllRestaurants = async (req, res) => {
         category: categoryNames[0] || 'Khác',
         categories: categoryNames, // Thêm field mới
         description: restaurantData.description || 'Thông tin đang được cập nhật.',
-        price: '$$', // Placeholder, có thể thêm field sau
+        price: '$$', // Placeholder để backward compatibility
+        minPrice, // Giá thấp nhất từ menu
+        avgPrice, // Giá trung bình từ menu
+        maxPrice, // Giá cao nhất từ menu
+        menuItems: menuItems.map(item => ({
+          id: item.id,
+          name: item.name,
+          price: parseFloat(item.price),
+          category: item.category,
+          image: item.image_url
+        })),
         latitude: parseFloat(restaurantData.latitude),
         longitude: parseFloat(restaurantData.longitude),
         owner_id: restaurantData.owner_id,
@@ -452,7 +480,7 @@ const createRestaurant = async (req, res) => {
     // Validate và convert latitude/longitude
     const lat = parseFloat(latitude);
     const lng = parseFloat(longitude);
-    
+
     if (isNaN(lat) || isNaN(lng)) {
       return res.status(400).json({
         success: false,
@@ -552,7 +580,7 @@ const createRestaurant = async (req, res) => {
     console.error('Error creating restaurant:', error);
     console.error('Error stack:', error.stack);
     console.error('Request body:', JSON.stringify(req.body, null, 2));
-    
+
     // Xử lý lỗi cụ thể
     let errorMessage = 'Lỗi khi tạo nhà hàng';
     if (error.name === 'SequelizeValidationError') {
@@ -562,7 +590,7 @@ const createRestaurant = async (req, res) => {
     } else if (error.name === 'SequelizeDatabaseError') {
       errorMessage = 'Lỗi database: ' + error.message;
     }
-    
+
     res.status(500).json({
       success: false,
       message: errorMessage,
@@ -609,7 +637,7 @@ const getOwnerRestaurants = async (req, res) => {
     const formattedRestaurants = restaurants.map(restaurant => {
       const restaurantData = restaurant.toJSON();
       const moderationStatus = restaurantData.status === 'approved' ? 'Đã duyệt' : 'Chờ duyệt';
-      
+
       return {
         id: restaurantData.id,
         name: restaurantData.name,
