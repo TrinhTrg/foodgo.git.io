@@ -6,9 +6,6 @@ const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      // User.hasMany(models.Restaurant, { foreignKey: 'userId', as: 'restaurants' });
-      // User.hasMany(models.Review, { foreignKey: 'userId', as: 'reviews' });
-      // User.hasMany(models.SavedLocation, { foreignKey: 'userId', as: 'savedLocations' });
     }
 
     static async findByEmail(email) {
@@ -21,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
-    // Ghi đè create để tự hash mật khẩu, vẫn dùng được User.create trong controller
     static async create(values, options) {
       const { name, email, password, role = 'user', phone_number, auth_provider = 'local' } = values;
       

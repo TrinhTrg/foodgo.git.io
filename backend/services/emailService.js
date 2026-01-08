@@ -8,7 +8,7 @@ const createTransporter = () => {
         service: 'gmail',
         auth: {
             user: process.env.ADMIN_EMAIL || 'truongtrinhttt147@gmail.com',
-            pass: process.env.ADMIN_PASSWORD || '123456',
+            pass: process.env.ADMIN_PASSWORD ,
         },
     });
 };
@@ -42,10 +42,10 @@ const sendOwnerPromotionEmail = async (userEmail, userName) => {
             
             <h3 style="color: #333;">Với quyền Owner, bạn có thể:</h3>
             <ul style="color: #666; line-height: 1.8;">
-              <li>✅ Tạo và quản lý nhà hàng của riêng bạn</li>
-              <li>✅ Thêm, sửa, xóa các món ăn trong menu</li>
-              <li>✅ Theo dõi đánh giá từ khách hàng</li>
-              <li>✅ Cập nhật thông tin nhà hàng bất cứ lúc nào</li>
+              <li>Tạo và quản lý nhà hàng của riêng bạn</li>
+              <li>Thêm, sửa, xóa các món ăn trong menu</li>
+              <li>Theo dõi đánh giá từ khách hàng</li>
+              <li>Cập nhật thông tin nhà hàng bất cứ lúc nào</li>
             </ul>
             
             <div style="text-align: center; margin: 30px 0;">
@@ -198,7 +198,7 @@ const sendPasswordResetCodeEmail = async (userEmail, userName, resetCode) => {
 
         // Verify connection trước khi gửi
         await transporter.verify();
-        console.log('✅ SMTP connection verified');
+        console.log('SMTP connection verified');
 
         const result = await transporter.sendMail(mailOptions);
         console.log('📧 Password reset code email sent successfully to:', userEmail);
@@ -206,8 +206,8 @@ const sendPasswordResetCodeEmail = async (userEmail, userName, resetCode) => {
         console.log('📧 Reset code:', resetCode);
         return { success: true, messageId: result.messageId };
     } catch (error) {
-        console.error('❌ Error sending password reset code email:', error);
-        console.error('❌ Error details:', {
+        console.error('Error sending password reset code email:', error);
+        console.error('Error details:', {
             message: error.message,
             code: error.code,
             command: error.command,

@@ -1,13 +1,11 @@
-var createError = require('http-errors');
+var createError = require('http-errors'); 
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 require('dotenv').config();
-
-// Import database functions
-var { createDatabase, createUsersTable } = require('./config/database');
+var { createDatabase, createTables } = require('./config/database');
 
 
 var indexRouter = require('./routes/index');
@@ -27,19 +25,19 @@ var app = express();
 // Hàm khởi tạo database
 const initializeDatabase = async () => {
   try {
-    console.log('🔄 Đang khởi tạo database...');
-    await createDatabase();     // Tạo database trước
-    await createUsersTable();   // Sau đó tạo bảng
-    
-    console.log('✅ Database initialized successfully');
+    console.log(' Đang khởi tạo database...');
+    await createDatabase();     // Tạo database
+    await createTables();       // Tạo bảng
+    console.log('Database initialized successfully');
   } catch (error) {
     console.error('Database initialization failed:', error);
     console.log('Server sẽ tiếp tục chạy nhưng có thể gặp lỗi database');
   }
 };
 
-// Khởi tạo database (không chặn server startup)
+// Khởi tạo database
 initializeDatabase();
+
 const appPort = process.env.PORT || 3000;
 const appHost = process.env.HOST || 'localhost';
 // CORS setup
@@ -58,7 +56,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-console.log(`🚀 API server chuẩn bị phục vụ tại http://${appHost}:${appPort}/api`);
+console.log(`API server chuẩn bị phục vụ tại http://${appHost}:${appPort}/api`);
 
 // Routes
 app.use('/api/users', userRoutes);

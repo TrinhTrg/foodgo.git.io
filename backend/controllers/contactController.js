@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 
-// Cấu hình email transporter
-// Sử dụng Gmail SMTP (bạn cần tạo App Password trong Gmail settings)
+// Cấu hình email 
+// Sử dụng Gmail SMTP
 const createTransporter = () => {
   return nodemailer.createTransport({
     service: 'gmail',
