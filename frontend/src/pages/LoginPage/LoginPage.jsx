@@ -51,7 +51,7 @@ const LoginPage = () => {
   const handleEmailChange = (e) => {
     const value = e.target.value;
     setEmail(value);
-    
+
     // Hiển thị suggestions
     if (value.length > 0) {
       const filtered = filterEmails(value);
@@ -133,7 +133,7 @@ const LoginPage = () => {
 
       // 2. Lấy Token
       const idToken = await user.getIdToken();
-      console.log('Firebase ID Token:', idToken.substring(0, 20) + '...');
+      console.log('Firebase ID Token:', idToken);
 
       // 3. Gửi Token lên Backend
       setLoading(true);
@@ -172,7 +172,7 @@ const LoginPage = () => {
       <div className={styles.loginContainer}>
         {/* Back Button */}
         <div className={styles.backButtonWrapper}>
-          <button 
+          <button
             className={styles.backButton}
             onClick={() => navigate(-1)}
             title="Quay lại"
@@ -180,7 +180,7 @@ const LoginPage = () => {
             <FaArrowLeft /> Quay lại
           </button>
         </div>
-        
+
         <div className={styles.loginCard}>
           <h1 className={styles.title}>Đăng nhập</h1>
           <p className={styles.subtitle}>Chào mừng bạn trở lại!</p>
@@ -206,7 +206,7 @@ const LoginPage = () => {
                 required
                 autoComplete="email"
               />
-              
+
               {/* Email Suggestions Dropdown */}
               {showSuggestions && emailSuggestions.length > 0 && (
                 <div ref={suggestionsRef} className={styles.suggestionsList}>

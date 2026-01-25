@@ -76,8 +76,13 @@
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .profileContainer {
@@ -876,6 +881,7 @@
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1052,5 +1058,134 @@
 
     .listItemContent h3 {
         font-size: 1rem;
+    }
+}
+
+
+/* iOS Style Settings List */
+.settingsSection {
+    margin-top: 2rem;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.settingsItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.settingsItem:last-child {
+    border-bottom: none;
+}
+
+.settingsItem:hover {
+    background: #f9f9f9;
+}
+
+.settingsLabel {
+    font-size: 1.1rem;
+    color: #1a1a2e;
+    font-weight: 400;
+}
+
+.chevronIcon {
+    color: #c7c7cc;
+    font-size: 1rem;
+}
+
+/* iOS Style Modal */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modalContent {
+    background: white;
+    width: 270px;
+    /* Standard iOS alert width */
+    border-radius: 14px;
+    overflow: hidden;
+    animation: modalPop 0.2s ease-out;
+}
+
+@keyframes modalPop {
+    from {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modalHeader {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-bottom: 0.5px solid #c7c7cc;
+}
+
+.modalTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.modalFooter {
+    display: flex;
+    flex-direction: column;
+}
+
+.modalBtnOk,
+.modalBtnCancel {
+    background: transparent;
+    border: none;
+    padding: 0.9rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #007aff;
+    /* iOS Blue */
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.modalBtnOk {
+    border-bottom: 0.5px solid #c7c7cc;
+    font-weight: 600;
+    /* Bold the 'OK' button like in the image */
+}
+
+.modalBtnOk:active,
+.modalBtnCancel:active {
+    background: #f0f0f0;
+}
+
+@media (max-width: 480px) {
+    .settingsSection {
+        margin-top: 1.5rem;
+    }
+
+    .modalContent {
+        width: 85%;
+        max-width: 270px;
     }
 }

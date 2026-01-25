@@ -102,6 +102,12 @@ export const authAPI = {
     });
   },
 
+  deleteAccount: async () => {
+    return apiCall('/users/profile', {
+      method: 'DELETE',
+    });
+  },
+
   loginWithFirebase: async (idToken) => {
     return apiCall('/auth/firebase-login', {
       method: 'POST',

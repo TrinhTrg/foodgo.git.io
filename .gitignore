@@ -1,10 +1,20 @@
+# Environment variables
 .env
+
+# Secrets
 serviceAccountKey.json
-package-lock.json
+
+# Dependencies
 node_modules
-config/config.json
+
+# OS files
 .DS_Store
+
+# Build output
 dist
-TESTING.md
+
+# Upload / generated files
 backend/public/uploads
 backend/public/geojson
+
+TESTING.md

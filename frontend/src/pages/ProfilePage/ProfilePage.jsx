@@ -18,7 +18,8 @@ import {
     FaUserTie,
     FaCamera,
     FaPhone,
-    FaArrowLeft
+    FaArrowLeft,
+    FaChevronRight
 } from 'react-icons/fa';
 import { favoriteAPI, reviewAPI, authAPI, restaurantAPI } from '../../services/api';
 import { useNotification } from '../../context/NotificationContext';
@@ -39,11 +40,12 @@ const ProfilePage = () => {
     });
     const [loading, setLoading] = useState(true);
     const fileInputRef = useRef(null);
-    
+
     // State for managing list view
     const [activeListView, setActiveListView] = useState(null); // 'favorites', 'reviews', 'restaurants'
     const [listData, setListData] = useState([]);
     const [listLoading, setListLoading] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     // Redirect nếu chưa đăng nhập (chỉ khi đã hoàn thành loading)
     useEffect(() => {
@@ -82,7 +84,7 @@ const ProfilePage = () => {
                 if (isOwner || isAdmin) {
                     try {
                         // Admin: lấy tổng số nhà hàng, Owner: lấy nhà hàng của owner
-                        const restaurantResponse = isAdmin 
+                        const restaurantResponse = isAdmin
                             ? await restaurantAPI.getAllRestaurants()
                             : await restaurantAPI.getOwnerRestaurants();
                         if (restaurantResponse.success) {
@@ -166,11 +168,11 @@ const ProfilePage = () => {
 
         setIsSaving(true);
         try {
-            const response = await authAPI.updateProfile({ 
+            const response = await authAPI.updateProfile({
                 name: editedName.trim(),
                 phone_number: editedPhoneNumber.trim() || null
             });
-            
+
             if (response.success) {
                 await refreshUser();
                 setIsEditing(false);
@@ -195,6 +197,23 @@ const ProfilePage = () => {
         if (file) {
             // TODO: Implement avatar upload
             showInfo('Thông báo', 'Tính năng đổi ảnh đại diện sẽ sớm được cập nhật!');
+        }
+    };
+
+    const handleDeleteAccount = async () => {
+        try {
+            const response = await authAPI.deleteAccount();
+            if (response.success) {
+                showSuccess('Thành công', 'Tài khoản đã được xóa.');
+                localStorage.clear();
+                window.location.href = '/';
+            } else {
+                showError('Lỗi', response.message);
+            }
+        } catch (error) {
+            showError('Lỗi', 'Lỗi hệ thống, vui lòng thử lại sau.');
+        } finally {
+            setShowDeleteModal(false);
         }
     };
 
@@ -223,7 +242,7 @@ const ProfilePage = () => {
                 }
             } else if (type === 'restaurants') {
                 // Admin: lấy tất cả nhà hàng, Owner: lấy nhà hàng của owner
-                const response = isAdmin 
+                const response = isAdmin
                     ? await restaurantAPI.getAllRestaurants()
                     : await restaurantAPI.getOwnerRestaurants();
                 if (response.success) {
@@ -264,7 +283,7 @@ const ProfilePage = () => {
             <main className={styles.mainContent}>
                 {/* Back Button */}
                 <div className={styles.backButtonWrapper}>
-                    <button 
+                    <button
                         className={styles.backButton}
                         onClick={() => navigate(-1)}
                         title="Quay lại"
@@ -272,7 +291,7 @@ const ProfilePage = () => {
                         <FaArrowLeft /> Quay lại
                     </button>
                 </div>
-                
+
                 <div className={styles.profileContainer}>
                     {/* Header Section */}
                     <div className={styles.profileHeader}>
@@ -356,7 +375,7 @@ const ProfilePage = () => {
 
                     {/* Stats Section */}
                     <div className={styles.statsSection}>
-                        <div 
+                        <div
                             className={`${styles.statCard} ${activeListView === 'favorites' ? styles.active : ''}`}
                             onClick={() => handleStatCardClick('favorites')}
                             style={{ cursor: 'pointer' }}
@@ -369,7 +388,7 @@ const ProfilePage = () => {
                                 <span className={styles.statLabel}>Địa điểm yêu thích</span>
                             </div>
                         </div>
-                        <div 
+                        <div
                             className={`${styles.statCard} ${activeListView === 'reviews' ? styles.active : ''}`}
                             onClick={() => handleStatCardClick('reviews')}
                             style={{ cursor: 'pointer' }}
@@ -383,7 +402,7 @@ const ProfilePage = () => {
                             </div>
                         </div>
                         {(isOwner || isAdmin) && (
-                            <div 
+                            <div
                                 className={`${styles.statCard} ${activeListView === 'restaurants' ? styles.active : ''}`}
                                 onClick={() => handleStatCardClick('restaurants')}
                                 style={{ cursor: 'pointer' }}
@@ -418,7 +437,7 @@ const ProfilePage = () => {
                                     <FaTimes />
                                 </button>
                             </div>
-                            
+
                             {listLoading ? (
                                 <div className={styles.listLoading}>
                                     <div className={styles.loadingSpinner}></div>
@@ -434,14 +453,14 @@ const ProfilePage = () => {
                                         if (activeListView === 'favorites') {
                                             // API trả về: { id, name, address, image, ... }
                                             return (
-                                                <div 
-                                                    key={item.id || item.favoriteId} 
+                                                <div
+                                                    key={item.id || item.favoriteId}
                                                     className={styles.listItem}
                                                     onClick={() => navigate(`/kham-pha?restaurant=${item.id}`)}
                                                 >
                                                     {item.image && (
-                                                        <img 
-                                                            src={item.image} 
+                                                        <img
+                                                            src={item.image}
                                                             alt={item.name}
                                                             className={styles.listItemImage}
                                                         />
@@ -454,14 +473,14 @@ const ProfilePage = () => {
                                             );
                                         } else if (activeListView === 'reviews') {
                                             return (
-                                                <div 
-                                                    key={item.id} 
+                                                <div
+                                                    key={item.id}
                                                     className={styles.listItem}
                                                     onClick={() => navigate(`/kham-pha?restaurant=${item.restaurant?.id}`)}
                                                 >
                                                     {item.restaurant?.image_url && (
-                                                        <img 
-                                                            src={item.restaurant.image_url} 
+                                                        <img
+                                                            src={item.restaurant.image_url}
                                                             alt={item.restaurant.name}
                                                             className={styles.listItemImage}
                                                         />
@@ -471,8 +490,8 @@ const ProfilePage = () => {
                                                         <div className={styles.reviewInfo}>
                                                             <div className={styles.ratingStars}>
                                                                 {[...Array(5)].map((_, i) => (
-                                                                    <FaStar 
-                                                                        key={i} 
+                                                                    <FaStar
+                                                                        key={i}
                                                                         className={i < item.rating ? styles.starFilled : styles.starEmpty}
                                                                     />
                                                                 ))}
@@ -485,14 +504,14 @@ const ProfilePage = () => {
                                             );
                                         } else if (activeListView === 'restaurants') {
                                             return (
-                                                <div 
-                                                    key={item.id} 
+                                                <div
+                                                    key={item.id}
                                                     className={styles.listItem}
                                                     onClick={() => navigate(`/kham-pha?restaurant=${item.id}`)}
                                                 >
                                                     {item.image_url && (
-                                                        <img 
-                                                            src={item.image_url} 
+                                                        <img
+                                                            src={item.image_url}
                                                             alt={item.name}
                                                             className={styles.listItemImage}
                                                         />
@@ -649,8 +668,37 @@ const ProfilePage = () => {
                             )}
                         </div>
                     </div>
+
+                    {/* Settings List Section */}
+                    <div className={styles.settingsSection}>
+                        <div className={styles.settingsList}>
+                            <div className={styles.settingsItem} onClick={() => setShowDeleteModal(true)}>
+                                <span className={styles.settingsLabel}>Xóa Tài khoản</span>
+                                <FaChevronRight className={styles.chevronIcon} />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
+
+            {/* Custom IOS Style Modal */}
+            {showDeleteModal && (
+                <div className={styles.modalOverlay}>
+                    <div className={styles.modalContent}>
+                        <div className={styles.modalHeader}>
+                            <h3 className={styles.modalTitle}>Bạn có chắc chắn muốn xóa tài khoản của mình không?</h3>
+                        </div>
+                        <div className={styles.modalFooter}>
+                            <button className={styles.modalBtnCancel} onClick={() => setShowDeleteModal(false)}>
+                                Hủy
+                            </button>
+                            <button className={styles.modalBtnOk} onClick={handleDeleteAccount}>
+                                OK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
             <Footer />
         </div>
     );
