@@ -41,7 +41,7 @@ const validateRegisterInput = (name, email, password) => {
   if (!name || !email || !password) {
     return 'Tên, email và mật khẩu là bắt buộc';
   }
-  
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return 'Định dạng email không hợp lệ';
@@ -79,10 +79,10 @@ const register = async (req, res, next) => {
     }
 
     // 4. Tạo User (Model User.js đã tự hash password rồi, ko cần làm ở đây)
-    const user = await User.create({ 
-      name, 
-      email, 
-      password, 
+    const user = await User.create({
+      name,
+      email,
+      password,
       role: finalRole,
       phone_number: phone_number || null
     });
@@ -160,7 +160,7 @@ const getProfile = async (req, res, next) => {
     const userId = req.userId || (req.user && req.user.id);
 
     const user = await User.findById(userId);
-    
+
     if (!user) {
       return res.status(404).json({ success: false, message: 'User không tồn tại' });
     }
@@ -195,9 +195,9 @@ const requestPasswordReset = async (req, res, next) => {
     const user = await User.findByEmail(email);
     if (!user) {
       // Không tiết lộ email có tồn tại hay không vì lý do bảo mật
-      return res.json({ 
-        success: true, 
-        message: 'Vui lòng kiểm tra email và không chia sẻ mã xác nhận với bất kỳ ai' 
+      return res.json({
+        success: true,
+        message: 'Vui lòng kiểm tra email và không chia sẻ mã xác nhận với bất kỳ ai'
       });
     }
 
@@ -215,7 +215,7 @@ const requestPasswordReset = async (req, res, next) => {
     // Gửi email
     try {
       const emailResult = await sendPasswordResetCodeEmail(email, user.name, resetCode);
-      
+
       if (!emailResult.success) {
         console.error('❌ Failed to send reset code email:', emailResult.error);
         // Log chi tiết để debug
@@ -227,15 +227,15 @@ const requestPasswordReset = async (req, res, next) => {
         });
         // Trả về lỗi thực tế trong development, ẩn trong production
         if (process.env.NODE_ENV === 'development') {
-          return res.status(500).json({ 
-            success: false, 
-            message: `Lỗi gửi email: ${emailResult.error}` 
+          return res.status(500).json({
+            success: false,
+            message: `Lỗi gửi email: ${emailResult.error}`
           });
         }
         // Vẫn trả về success để không tiết lộ lỗi trong production
-        return res.json({ 
-          success: true, 
-          message: 'Vui lòng kiểm tra email và không chia sẻ mã xác nhận với bất kỳ ai' 
+        return res.json({
+          success: true,
+          message: 'Vui lòng kiểm tra email và không chia sẻ mã xác nhận với bất kỳ ai'
         });
       }
 
@@ -246,21 +246,21 @@ const requestPasswordReset = async (req, res, next) => {
         messageId: emailResult.messageId
       });
 
-      res.json({ 
-        success: true, 
-        message: 'Mã xác nhận đã được gửi đến email của bạn. Vui lòng kiểm tra hộp thư và không chia sẻ mã với bất kỳ ai.' 
+      res.json({
+        success: true,
+        message: 'Mã xác nhận đã được gửi đến email của bạn. Vui lòng kiểm tra hộp thư và không chia sẻ mã với bất kỳ ai.'
       });
     } catch (emailError) {
       console.error('❌ Error sending password reset email:', emailError);
       if (process.env.NODE_ENV === 'development') {
-        return res.status(500).json({ 
-          success: false, 
-          message: `Lỗi gửi email: ${emailError.message}` 
+        return res.status(500).json({
+          success: false,
+          message: `Lỗi gửi email: ${emailError.message}`
         });
       }
-      return res.json({ 
-        success: true, 
-        message: 'Vui lòng kiểm tra email và không chia sẻ mã xác nhận với bất kỳ ai' 
+      return res.json({
+        success: true,
+        message: 'Vui lòng kiểm tra email và không chia sẻ mã xác nhận với bất kỳ ai'
       });
     }
   } catch (error) {
@@ -278,7 +278,7 @@ const verifyPasswordResetCode = async (req, res, next) => {
     }
 
     const storedData = passwordResetCodes.get(email.toLowerCase());
-    
+
     if (!storedData) {
       return res.status(400).json({ success: false, message: 'Mã xác nhận không hợp lệ hoặc đã hết hạn' });
     }
@@ -295,9 +295,9 @@ const verifyPasswordResetCode = async (req, res, next) => {
     // Đánh dấu mã đã được xác nhận
     storedData.verified = true;
 
-    res.json({ 
-      success: true, 
-      message: 'Mã xác nhận hợp lệ. Bạn có thể đặt lại mật khẩu.' 
+    res.json({
+      success: true,
+      message: 'Mã xác nhận hợp lệ. Bạn có thể đặt lại mật khẩu.'
     });
   } catch (error) {
     next(error);
@@ -327,17 +327,17 @@ const checkPasswordMatch = async (req, res, next) => {
     const isMatch = await User.comparePassword(newPassword, user.password);
 
     if (isMatch) {
-      return res.json({ 
-        success: true, 
-        isMatch: true, 
-        message: 'Mật khẩu mới trùng với mật khẩu cũ' 
+      return res.json({
+        success: true,
+        isMatch: true,
+        message: 'Mật khẩu mới trùng với mật khẩu cũ'
       });
     }
 
-    return res.json({ 
-      success: true, 
-      isMatch: false, 
-      message: 'Mật khẩu mới khác với mật khẩu cũ' 
+    return res.json({
+      success: true,
+      isMatch: false,
+      message: 'Mật khẩu mới khác với mật khẩu cũ'
     });
   } catch (error) {
     next(error);
@@ -358,7 +358,7 @@ const resetPasswordWithCode = async (req, res, next) => {
     }
 
     const storedData = passwordResetCodes.get(email.toLowerCase());
-    
+
     if (!storedData) {
       return res.status(400).json({ success: false, message: 'Mã xác nhận không hợp lệ hoặc đã hết hạn' });
     }
@@ -385,9 +385,9 @@ const resetPasswordWithCode = async (req, res, next) => {
     if (user.password) {
       const isMatch = await User.comparePassword(newPassword, user.password);
       if (isMatch) {
-        return res.status(400).json({ 
-          success: false, 
-          message: 'Mật khẩu mới không được trùng với mật khẩu cũ. Vui lòng chọn mật khẩu khác.' 
+        return res.status(400).json({
+          success: false,
+          message: 'Mật khẩu mới không được trùng với mật khẩu cũ. Vui lòng chọn mật khẩu khác.'
         });
       }
     }
@@ -456,9 +456,9 @@ const updateProfile = async (req, res, next) => {
         // Basic validation: chỉ cho phép số, dấu +, dấu cách, dấu gạch ngang
         const phoneRegex = /^[\d\s\+\-\(\)]+$/;
         if (!phoneRegex.test(phone_number.trim())) {
-          return res.status(400).json({ 
-            success: false, 
-            message: 'Số điện thoại không hợp lệ' 
+          return res.status(400).json({
+            success: false,
+            message: 'Số điện thoại không hợp lệ'
           });
         }
         updateData.phone_number = phone_number.trim();
@@ -486,6 +486,52 @@ const updateProfile = async (req, res, next) => {
   }
 };
 
+const deleteAccount = async (req, res, next) => {
+  try {
+    const userId = req.userId || (req.user && req.user.id);
+
+    if (!userId) {
+      return res.status(401).json({ success: false, message: 'Chưa đăng nhập' });
+    }
+
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User không tồn tại' });
+    }
+
+    // Thủ công xóa dữ liệu liên quan để đảm bảo không bị lỗi khóa ngoại (Foreign Key)
+    // Dù đã thêm onDelete: CASCADE trong model, việc xóa thủ công sẽ an toàn hơn
+    // nếu migration alter: true không cập nhật kịp constraints trong DB.
+
+    // 1. Xóa các địa điểm yêu thích
+    const { FavoritePlace, Review, Restaurant } = require('../models');
+    if (FavoritePlace) {
+      await FavoritePlace.destroy({ where: { user_id: userId } });
+    }
+
+    // 2. Xóa các đánh giá
+    if (Review) {
+      await Review.destroy({ where: { user_id: userId } });
+    }
+
+    // 3. Gỡ owner_id khỏi các nhà hàng (nếu là chủ nhà hàng)
+    if (Restaurant) {
+      await Restaurant.update({ owner_id: null }, { where: { owner_id: userId } });
+    }
+
+    // 4. Xóa User
+    await user.destroy();
+
+    res.json({
+      success: true,
+      message: 'Tài khoản đã được xóa thành công'
+    });
+  } catch (error) {
+    console.error('Error deleting account:', error);
+    next(error);
+  }
+};
+
 const healthCheck = (req, res) => {
   res.json({ success: true, message: 'Users API is working' });
 };
@@ -496,6 +542,7 @@ module.exports = {
   login,
   getProfile,
   updateProfile,
+  deleteAccount,
   logout,
   forgotPassword, // Deprecated - giữ lại để tương thích
   requestPasswordReset,

@@ -1,11 +1,17 @@
-var createError = require('http-errors'); 
+var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 require('dotenv').config();
-var { createDatabase, createTables } = require('./config/database');
+var { sequelize, createDatabase, createTables } = require('./config/database');
+
+// Import Seeders
+const categorySeeder = require('./seeders/20250101000001-seed-categories');
+const restaurantSeeder = require('./seeders/20250101000002-seed-restaurants-osm');
+const userSeeder = require('./seeders/20251121150003-demo-user');
+
 
 
 var indexRouter = require('./routes/index');
@@ -28,12 +34,35 @@ const initializeDatabase = async () => {
     console.log(' Đang khởi tạo database...');
     await createDatabase();     // Tạo database
     await createTables();       // Tạo bảng
+
+    // Chạy seed data sau khi tạo bảng
+    await runSeeders();
+
     console.log('Database initialized successfully');
   } catch (error) {
     console.error('Database initialization failed:', error);
     console.log('Server sẽ tiếp tục chạy nhưng có thể gặp lỗi database');
   }
 };
+
+// Hàm chạy seed data
+const runSeeders = async () => {
+  try {
+    console.log('🌱 Đang kiểm tra và chạy seed data...');
+    const queryInterface = sequelize.getQueryInterface();
+    const { Sequelize } = sequelize;
+
+    // Chạy các seeder theo thứ tự
+    await categorySeeder.up(queryInterface, Sequelize);
+    await restaurantSeeder.up(queryInterface, Sequelize);
+    await userSeeder.up(queryInterface, Sequelize);
+
+    console.log('Seed data hoàn tất');
+  } catch (error) {
+    console.error('Lỗi khi chạy seed data:', error);
+  }
+};
+
 
 // Khởi tạo database
 initializeDatabase();

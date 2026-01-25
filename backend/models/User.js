@@ -6,6 +6,9 @@ const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
+      User.hasMany(models.Review, { foreignKey: 'user_id', onDelete: 'CASCADE' });
+      User.hasMany(models.FavoritePlace, { foreignKey: 'user_id', onDelete: 'CASCADE' });
+      User.hasMany(models.Restaurant, { foreignKey: 'owner_id', onDelete: 'SET NULL' });
     }
 
     static async findByEmail(email) {
@@ -20,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
 
     static async create(values, options) {
       const { name, email, password, role = 'user', phone_number, auth_provider = 'local' } = values;
-      
+
       // Chỉ hash password nếu có password (cho Firebase users không có password)
       let hashedPassword = null;
       if (password) {
