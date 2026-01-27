@@ -285,10 +285,13 @@ Sau khi chạy seeder, có thể đăng nhập với tài khoản demo:
 - Admin routes được bảo vệ
 
 ---
+## Test API by Postman 
+- Link : https://truongtrinhttt147-6449787.postman.co/workspace/Trinh-T's-Workspace~82859a28-626f-476c-8219-62fb1f07ff71/collection/49560645-3ce550b5-c0a6-4655-9e84-e2e39dc61722?action=share&creator=49560645&active-environment=49560645-672ed582-c583-42ff-ad3f-278b2ee16788
 
 ## 📄 License
 
 Dự án này được phát triển cho mục đích học tập và nghiên cứu môn Advanced Web Design.
 
 ---
+
 
