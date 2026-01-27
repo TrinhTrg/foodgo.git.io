@@ -21,5 +21,8 @@ router.post('/', requireAuth, restaurantController.createRestaurant);
 // POST /api/restaurants/:id/view - Track restaurant view (không cần auth, có thể dùng session_id)
 router.post('/:id/view', restaurantController.trackRestaurantView);
 
+// PUT /api/restaurants/:id - Cập nhật nhà hàng
+router.put('/:id', requireAuth, restaurantController.updateRestaurant);
+
 module.exports = router;
 

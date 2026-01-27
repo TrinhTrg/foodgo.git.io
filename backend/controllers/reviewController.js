@@ -102,19 +102,19 @@ const createOrUpdateReview = async (req, res, next) => {
 
         // Luôn tạo review mới (không update review cũ)
         const review = await Review.create({
-                user_id: userId,
+            user_id: userId,
             restaurant_id: restaurantId,
-                rating,
-                content: content || ''
+            rating,
+            content: content || ''
         });
 
         // Xử lý ảnh - thêm ảnh mới cho review mới
         if (imageUrls && Array.isArray(imageUrls) && imageUrls.length > 0) {
-                const imageRecords = imageUrls.map(url => ({
-                    review_id: review.id,
-                    image_url: url
-                }));
-                await ImageReview.bulkCreate(imageRecords);
+            const imageRecords = imageUrls.map(url => ({
+                review_id: review.id,
+                image_url: url
+            }));
+            await ImageReview.bulkCreate(imageRecords);
         }
 
         // Cập nhật rating trung bình của restaurant

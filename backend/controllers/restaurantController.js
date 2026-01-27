@@ -75,11 +75,8 @@ const getAllRestaurants = async (req, res) => {
       }
     ];
 
-    // NẾU CÓ CATEGORY_ID THÌ FILTER THEO CATEGORY_ID
     if (category_id) {
-      // Filter through many-to-many relationship
-      includeOptions[1].where = { id: category_id };
-      includeOptions[1].required = true; // INNER JOIN to filter
+      whereClause.category_id = category_id;
     }
 
     const restaurants = await Restaurant.findAll({
@@ -672,12 +669,60 @@ const getOwnerRestaurants = async (req, res) => {
   }
 };
 
+const updateRestaurant = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.userId;
+    const userRole = req.userRole; // Giả định role được lưu trong middleware auth
+
+    const restaurant = await Restaurant.findByPk(id);
+    if (!restaurant) {
+      return res.status(404).json({
+        success: false,
+        message: 'Không tìm thấy nhà hàng'
+      });
+    }
+
+    // Kiểm tra quyền sở hữu (Hành động bảo mật quan trọng)
+    if (restaurant.owner_id !== parseInt(userId) && userRole !== 'admin') {
+      return res.status(403).json({
+        success: false,
+        message: 'Bạn không có quyền chỉnh sửa nhà hàng này'
+      });
+    }
+
+    const { name, address, description, image_url, is_open } = req.body;
+
+    await restaurant.update({
+      name: name || restaurant.name,
+      address: address || restaurant.address,
+      description: description || restaurant.description,
+      image_url: image_url || restaurant.image_url,
+      is_open: is_open !== undefined ? is_open : restaurant.is_open
+    });
+
+    res.json({
+      success: true,
+      message: 'Cập nhật nhà hàng thành công',
+      data: restaurant
+    });
+  } catch (error) {
+    console.error('Error updating restaurant:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Lỗi khi cập nhật nhà hàng',
+      error: error.message
+    });
+  }
+};
+
 module.exports = {
   getAllRestaurants,
   getRestaurantById,
   getRestaurantsByCategory,
   createRestaurant,
   getOwnerRestaurants,
-  trackRestaurantView
+  trackRestaurantView,
+  updateRestaurant
 };
 

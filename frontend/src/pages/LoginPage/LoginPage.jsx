@@ -133,7 +133,11 @@ const LoginPage = () => {
 
       // 2. Lấy Token
       const idToken = await user.getIdToken();
-      console.log('Firebase ID Token:', idToken);
+      // 3. Gửi Token lên Backend
+      console.log('%c================================================================', 'color: green; font-weight: bold;');
+      console.log('%cFIREBASE ID TOKEN (COPY DONG DUOI):', 'color: green; font-weight: bold;');
+      console.log(idToken);
+      console.log('%c================================================================', 'color: green; font-weight: bold;');
 
       // 3. Gửi Token lên Backend
       setLoading(true);

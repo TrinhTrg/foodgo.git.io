@@ -17,13 +17,13 @@ module.exports = {
 
     try {
       // Kiểm tra xem đã có dữ liệu categories chưa
-      const [existingCategories] = await queryInterface.sequelize.query(
+      const existingCategories = await queryInterface.sequelize.query(
         `SELECT name FROM categories`,
         { type: Sequelize.QueryTypes.SELECT }
       );
 
       const existingNames = existingCategories.map(cat => cat.name);
-      
+
       // Chỉ insert những category chưa tồn tại
       const categoriesToInsert = categories.filter(cat => !existingNames.includes(cat.name));
 

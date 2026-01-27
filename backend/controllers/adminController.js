@@ -83,13 +83,7 @@ const approveRestaurant = async (req, res) => {
       });
     }
 
-    if (restaurant.status === 'approved') {
-      return res.status(400).json({
-        success: false,
-        message: 'Nhà hàng đã được duyệt rồi'
-      });
-    }
-
+    // Update status to approved (idempotent)
     await restaurant.update({ status: 'approved' });
 
     res.json({

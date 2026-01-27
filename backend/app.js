@@ -31,7 +31,7 @@ var app = express();
 // Hàm khởi tạo database
 const initializeDatabase = async () => {
   try {
-    console.log(' Đang khởi tạo database...');
+    console.log('Đang khởi tạo database...');
     await createDatabase();     // Tạo database
     await createTables();       // Tạo bảng
 
@@ -48,18 +48,46 @@ const initializeDatabase = async () => {
 // Hàm chạy seed data
 const runSeeders = async () => {
   try {
-    console.log('🌱 Đang kiểm tra và chạy seed data...');
+    console.log('Đang kiểm tra và chạy seed data...');
     const queryInterface = sequelize.getQueryInterface();
     const { Sequelize } = sequelize;
 
-    // Chạy các seeder theo thứ tự
-    await categorySeeder.up(queryInterface, Sequelize);
-    await restaurantSeeder.up(queryInterface, Sequelize);
-    await userSeeder.up(queryInterface, Sequelize);
+    // Kiểm tra xem đã có data chưa
+    const [categories] = await sequelize.query('SELECT COUNT(*) as count FROM categories');
+    const [restaurants] = await sequelize.query('SELECT COUNT(*) as count FROM restaurants');
+    const [users] = await sequelize.query('SELECT COUNT(*) as count FROM users');
+
+    const categoryCount = categories[0].count;
+    const restaurantCount = restaurants[0].count;
+    const userCount = users[0].count;
+
+    console.log(`Hiện có: ${categoryCount} categories, ${restaurantCount} restaurants, ${userCount} users`);
+
+    // Chạy seeder theo thứ tự
+    if (categoryCount === 0) {
+      console.log('Đang seed categories...');
+      await categorySeeder.up(queryInterface, Sequelize);
+    } else {
+      console.log('Categories đã có dữ liệu, bỏ qua');
+    }
+
+    if (restaurantCount === 0) {
+      console.log('Đang seed restaurants...');
+      await restaurantSeeder.up(queryInterface, Sequelize);
+    } else {
+      console.log('Restaurants đã có dữ liệu, bỏ qua');
+    }
+
+    if (userCount === 0) {
+      console.log('Đang seed users...');
+      await userSeeder.up(queryInterface, Sequelize);
+    } else {
+      console.log('Users đã có dữ liệu, bỏ qua');
+    }
 
     console.log('Seed data hoàn tất');
   } catch (error) {
-    console.error('Lỗi khi chạy seed data:', error);
+    console.error('Lỗi khi chạy seed data:', error.message);
   }
 };
 
