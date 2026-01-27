@@ -19,25 +19,25 @@ import './index.css'; // Import file CSS toàn cục (để lấy font, màu n�
 function App() {
   return (
     <NotificationProvider>
-    <AuthProvider>
-      <CollectionProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/kham-pha" element={<DiscoverPage />} />
-            <Route path="/about-us" element={<AboutUsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/dang-nhap" element={<LoginPage />} />
-            <Route path="/dang-ky" element={<RegisterPage />} />
-            <Route path="/quen-mat-khau" element={<ForgotPasswordPage />} />
-            <Route path="/create-location" element={<CreateLocationPage />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/ho-so" element={<ProfilePage />} />
+      <AuthProvider>
+        <CollectionProvider>
+          <BrowserRouter basename={import.meta.env.BASE_URL}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/kham-pha" element={<DiscoverPage />} />
+              <Route path="/about-us" element={<AboutUsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/dang-nhap" element={<LoginPage />} />
+              <Route path="/dang-ky" element={<RegisterPage />} />
+              <Route path="/quen-mat-khau" element={<ForgotPasswordPage />} />
+              <Route path="/create-location" element={<CreateLocationPage />} />
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/ho-so" element={<ProfilePage />} />
 
-          </Routes>
-        </BrowserRouter>
-      </CollectionProvider>
-    </AuthProvider>
+            </Routes>
+          </BrowserRouter>
+        </CollectionProvider>
+      </AuthProvider>
     </NotificationProvider>
   );
 }
