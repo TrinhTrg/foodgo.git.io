@@ -13,7 +13,7 @@ import { searchAPI } from '../../services/api';
 import { FaMapMarkerAlt, FaPlus, FaUser, FaComment, FaList, FaSignOutAlt, FaBars, FaTimes } from 'react-icons/fa'; // Icon từ Font Awesome
 import { FiSearch } from 'react-icons/fi'; // Icon từ Feather Icons
 
-import imglogo from '../../assets/logo.png'; // Import logo
+import imglogo from '../../assets/Logo.png'; // Import logo
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

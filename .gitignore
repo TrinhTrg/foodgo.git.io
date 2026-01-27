@@ -13,6 +13,9 @@ node_modules
 # Build output
 dist
 
+# Firebase
+firebase.js
+
 # Upload / generated files
 backend/public/uploads
 backend/public/geojson
