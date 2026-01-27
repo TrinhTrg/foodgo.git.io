@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/FoodGo/',
+  base: '/foodgo.git.io/',
   server: {
     port: 5173,
     open: true,
