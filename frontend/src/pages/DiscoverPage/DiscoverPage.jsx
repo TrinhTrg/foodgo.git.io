@@ -13,6 +13,7 @@ import {
 } from 'react-icons/fa';
 import { FiFilter } from 'react-icons/fi';
 import MapView from "../../components/Map/MapView";
+import mockRestaurants from "../../data/mockRestaurants.json";
 
 const DEFAULT_CITY_CENTER = { lat: 16.0544, lng: 108.2022 };
 
@@ -166,7 +167,8 @@ const DiscoverPage = () => {
         setAllRestaurants(restaurantData);
       } catch (err) {
         if (err.name !== 'AbortError') {
-          console.error('Error fetching all restaurants:', err);
+          console.error('Error fetching all restaurants, using mock data:', err);
+          setAllRestaurants(mockRestaurants);
         }
       }
     };
@@ -215,8 +217,11 @@ const DiscoverPage = () => {
         setRestaurants(restaurantData);
       } catch (err) {
         if (err.name !== 'AbortError') {
-          console.error(err);
-          setError(err.message || 'Đã có lỗi xảy ra');
+          console.error('API Error, using mock data:', err);
+          
+          setRestaurants(mockRestaurants);
+          setAllRestaurants(mockRestaurants);
+          setError(null); 
         }
       } finally {
         setLoading(false);

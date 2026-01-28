@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "name": "Nhà hàng LoCo",
+        "category": "Nhà hàng",
+        "address": "1C Đường Lê Duẩn, Đà Nẵng",
+        "description": "Một địa điểm tuyệt vời tại Đà Nẵng",
+        "rating": 4.5,
+        "reviews": 128,
+        "latitude": 16.0713531,
+        "longitude": 108.2234585,
+        "isOpen": true,
+        "image": "https://lh3.googleusercontent.com/p/AF1QipP4y-zkmgp40UmCojMxcn8xrCFwymiOOyu5omaf=w408-h612-k-no",
+        "price": "$$",
+        "tags": [
+            "Việt Nam",
+            "Gia đình"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "땀띤식당 (Tâm Tình Restaurant)",
+        "category": "Hàn Quốc",
+        "address": "77 Đường Trần Bạch Đằng, Đà Nẵng",
+        "description": "Nhà hàng Hàn Quốc nướng thịt nổi tiếng",
+        "rating": 4.8,
+        "reviews": 256,
+        "latitude": 16.0509126,
+        "longitude": 108.247442,
+        "isOpen": true,
+        "image": "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+        "price": "$$$",
+        "tags": [
+            "BBQ",
+            "Hàn Quốc"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Chill Chill Đảo Xanh",
+        "category": "Nhà hàng",
+        "address": "Lô 1 cầu Đảo Xanh, Đà Nẵng",
+        "description": "View sông Hàn cực đẹp",
+        "rating": 4.2,
+        "reviews": 89,
+        "latitude": 16.0486996,
+        "longitude": 108.2242954,
+        "isOpen": true,
+        "image": "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSx2l49xQcR-cDGg3EBUA3iDxd3_OJB1Ggju1Y0JlcjvWhkKTGYYoC0luvyvWdJprS8mLJDYP1h40RZvtghsFa3EhsIYwzVV3Izh_aNVydO-FrXIIUjhHZLAmQDbDezMooETsIvLL1c_Osw=w408-h272-k-no",
+        "price": "$$",
+        "tags": [
+            "Hải sản",
+            "View đẹp"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Bánh Xèo Bà Dưỡng",
+        "category": "Ăn vặt",
+        "address": "23 Kiệt 280 Hoàng Diệu, Đà Nẵng",
+        "description": "Bánh xèo nổi tiếng nhất Đà Nẵng",
+        "rating": 4.9,
+        "reviews": 1200,
+        "latitude": 16.0588034,
+        "longitude": 108.2160349,
+        "isOpen": true,
+        "image": "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+        "price": "$",
+        "tags": [
+            "Đặc sản",
+            "Bánh xèo"
+        ]
+    }
+]
